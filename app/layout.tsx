@@ -22,6 +22,9 @@ export const metadata: Metadata = {
     "junior developer",
   ],
   authors: [{ name: "Dmytro Lanovyi" }],
+  icons: {
+    icon: [{ url: "/favicon.svg", type: "image/svg+xml" }],
+  },
   robots: "index, follow",
   metadataBase: new URL("https://portfolio-nu-ashen-35.vercel.app"),
   alternates: { canonical: "/" },
