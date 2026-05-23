@@ -1,28 +1,28 @@
 import Link from "next/link";
 
 interface Project {
-  index:       string;
-  year:        string;
-  title:       string;
+  index: string;
+  year: string;
+  title: string;
   description: string;
-  tags?:       string[];
-  href:        string;
-  coming?:     boolean;
+  tags?: string[];
+  href: string;
+  coming?: boolean;
 }
 
 const projects: Project[] = [
   {
     index: "01 / 04",
-    year:  "2025",
+    year: "2025",
     title: "Come By Shop",
     description:
       "Full-featured food ordering app. Next.js App Router (SSR), Fastify REST API, PostgreSQL + Drizzle ORM, JWT + Google OAuth, Zustand, TanStack Query, Resend email, Cloudinary image upload. Covered with Vitest.",
     tags: ["Next.js", "Fastify", "PostgreSQL", "JWT", "Vitest"],
-    href: "https://come-by-shope-latest-git-main-blackmfgiks-projects.vercel.app",
+    href: "https://come-by-shop-production.up.railway.app",
   },
   {
     index: "02 / 04",
-    year:  "2026",
+    year: "2026",
     title: "Okrip World",
     description:
       "Ukrainian Minecraft network with three servers — Vanilla, Modded and Creative. Live world maps, custom mascot OiOi and an active community on Discord and Telegram.",
@@ -30,24 +30,32 @@ const projects: Project[] = [
     href: "https://okrip-world.vercel.app",
   },
   {
-    index:       "03 / 04",
-    year:        "2026",
-    title:       "Coming Soon",
+    index: "03 / 04",
+    year: "2026",
+    title: "Coming Soon",
     description: "Next project in development. Stay tuned for updates.",
-    href:        "#",
-    coming:      true,
+    href: "#",
+    coming: true,
   },
   {
-    index:       "04 / 04",
-    year:        "2026",
-    title:       "Coming Soon",
+    index: "04 / 04",
+    year: "2026",
+    title: "Coming Soon",
     description: "Next project in development. Stay tuned for updates.",
-    href:        "#",
-    coming:      true,
+    href: "#",
+    coming: true,
   },
 ];
 
-function ProjectCard({ index, year, title, description, tags, href, coming }: Project) {
+function ProjectCard({
+  index,
+  year,
+  title,
+  description,
+  tags,
+  href,
+  coming,
+}: Project) {
   const inner = (
     <div
       className={[
@@ -90,7 +98,12 @@ function ProjectCard({ index, year, title, description, tags, href, coming }: Pr
   if (coming) return <div className="h-full">{inner}</div>;
 
   return (
-    <Link href={href} target="_blank" rel="noopener noreferrer" className="no-underline text-inherit block h-full">
+    <Link
+      href={href}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="no-underline text-inherit block h-full"
+    >
       {inner}
     </Link>
   );

@@ -1,8 +1,16 @@
 const contactLinks = [
-  { label: "Email",    href: "mailto:lanovui0902@gmail.com"                                                                          },
-  { label: "GitHub",   href: "https://github.com/BlackMfgik",                                        external: true },
-  { label: "LinkedIn", href: "https://www.linkedin.com/in/%D0%B4%D0%BC%D0%B8%D1%82%D1%80%D0%BE-%D0%BB%D0%B0%D0%BD%D0%BE%D0%B2%D0%B8%D0%B9-75a16638a/?locale=en-US", external: true },
-  { label: "Discord",  href: "https://discord.com/users/554465791358140417",                          external: true },
+  { label: "Email", href: "mailto:lanovui0902@gmail.com" },
+  { label: "GitHub", href: "https://github.com/BlackMfgik", external: true },
+  {
+    label: "LinkedIn",
+    href: "https://www.linkedin.com/in/dmytro-lanovui-75a16638a/",
+    external: true,
+  },
+  {
+    label: "Discord",
+    href: "https://discord.com/users/554465791358140417",
+    external: true,
+  },
 ];
 
 export default function Contact() {
@@ -30,7 +38,8 @@ export default function Contact() {
 
         <p className="font-sans text-[15px] leading-[1.7] tracking-[-0.2px] text-txt-muted mb-[52px]">
           Open for collaborations, freelance projects, and interesting
-          opportunities. Let&apos;s discuss how I can help bring your ideas to life.
+          opportunities. Let&apos;s discuss how I can help bring your ideas to
+          life.
         </p>
 
         <div className="flex justify-center gap-6 flex-wrap max-[900px]:flex-col max-[900px]:items-center">
