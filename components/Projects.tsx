@@ -76,7 +76,10 @@ function ProjectCard({
         {title}
       </h3>
 
-      <p className="flex-1 font-sans text-[14px] leading-[1.7] tracking-[-0.2px] max-w-[380px]" style={{ color: 'var(--color-txt-skill-desc)' }}>
+      <p
+        className="flex-1 font-sans text-[14px] leading-[1.7] tracking-[-0.2px] max-w-[380px]"
+        style={{ color: "var(--color-txt-skill-desc)" }}
+      >
         {description}
       </p>
 

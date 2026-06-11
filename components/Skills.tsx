@@ -6,33 +6,129 @@ interface SkillCard {
 }
 
 const frontend: SkillCard[] = [
-  { icon: "TS",   name: "TypeScript",     desc: "Strict typing, interfaces, generics, utility types",           level: "Advanced"    },
-  { icon: "R19",  name: "React 19",       desc: "RSC, hooks, context, suspense, transitions",                   level: "Advanced"    },
-  { icon: "NXT",  name: "Next.js",        desc: "App Router, SSR, SSG, server actions, metadata API",           level: "Advanced"    },
-  { icon: "ZST",  name: "Zustand",        desc: "Lightweight global state, slices, persist middleware",          level: "Proficient"  },
-  { icon: "TSQ",  name: "TanStack Query", desc: "Server state, caching, mutations, optimistic updates",          level: "Proficient"  },
-  { icon: "TW",   name: "Tailwind CSS",   desc: "Utility-first styling, custom design tokens, dark mode",        level: "Advanced"    },
-  { icon: "ZOD",  name: "Zod",            desc: "Runtime schema validation, type inference, form parsing",       level: "Proficient"  },
+  {
+    icon: "TS",
+    name: "TypeScript",
+    desc: "Strict typing, interfaces, generics, utility types",
+    level: "Advanced",
+  },
+  {
+    icon: "R19",
+    name: "React 19",
+    desc: "RSC, hooks, context, suspense, transitions",
+    level: "Advanced",
+  },
+  {
+    icon: "NXT",
+    name: "Next.js",
+    desc: "App Router, SSR, SSG, server actions, metadata API",
+    level: "Advanced",
+  },
+  {
+    icon: "ZST",
+    name: "Zustand",
+    desc: "Lightweight global state, slices, persist middleware",
+    level: "Proficient",
+  },
+  {
+    icon: "TSQ",
+    name: "TanStack Query",
+    desc: "Server state, caching, mutations, optimistic updates",
+    level: "Proficient",
+  },
+  {
+    icon: "TW",
+    name: "Tailwind CSS",
+    desc: "Utility-first styling, custom design tokens, dark mode",
+    level: "Advanced",
+  },
+  {
+    icon: "ZOD",
+    name: "Zod",
+    desc: "Runtime schema validation, type inference, form parsing",
+    level: "Proficient",
+  },
 ];
 
 const backend: SkillCard[] = [
-  { icon: "FST",  name: "Fastify",        desc: "REST API, plugins, hooks, schema serialisation",               level: "Proficient"  },
-  { icon: "NODE", name: "Node.js",        desc: "Event loop, streams, ESM, environment config",                 level: "Advanced"    },
-  { icon: "PSQL", name: "PostgreSQL",     desc: "Relational schema design, joins, transactions, indices",        level: "Proficient"  },
-  { icon: "DRZ",  name: "Drizzle ORM",    desc: "Type-safe queries, migrations, relations, SQL escape hatch",    level: "Proficient"  },
-  { icon: "JWT",  name: "JWT Auth",       desc: "Access / refresh tokens, cookie strategy, Google OAuth",       level: "Proficient"  },
+  {
+    icon: "FST",
+    name: "Fastify",
+    desc: "REST API, plugins, hooks, schema serialisation",
+    level: "Proficient",
+  },
+  {
+    icon: "NODE",
+    name: "Node.js",
+    desc: "Event loop, streams, ESM, environment config",
+    level: "Advanced",
+  },
+  {
+    icon: "PSQL",
+    name: "PostgreSQL",
+    desc: "Relational schema design, joins, transactions, indices",
+    level: "Proficient",
+  },
+  {
+    icon: "DRZ",
+    name: "Drizzle ORM",
+    desc: "Type-safe queries, migrations, relations, SQL escape hatch",
+    level: "Proficient",
+  },
+  {
+    icon: "JWT",
+    name: "JWT Auth",
+    desc: "Access / refresh tokens, cookie strategy, Google OAuth",
+    level: "Proficient",
+  },
 ];
 
 const tooling: SkillCard[] = [
-  { icon: "VITE", name: "Vite",           desc: "HMR, build optimisation, plugins, env handling",               level: "Advanced"    },
-  { icon: "VIT",  name: "Vitest",         desc: "Unit & integration tests, mocking, coverage reports",           level: "Intermediate"},
-  { icon: "GIT",  name: "Git",            desc: "Branch strategy, conventional commits, rebase",                 level: "Proficient"  },
-  { icon: "RLW",  name: "Railway",        desc: "PostgreSQL hosting, environment variables, logs",               level: "Proficient"  },
-  { icon: "VRL",  name: "Vercel",         desc: "Deployments, preview URLs, edge config, analytics",            level: "Advanced"    },
-  { icon: "CLD",  name: "Cloudinary",     desc: "Image upload, transformation, CDN delivery",                   level: "Proficient"  },
+  {
+    icon: "VITE",
+    name: "Vite",
+    desc: "HMR, build optimisation, plugins, env handling",
+    level: "Advanced",
+  },
+  {
+    icon: "VIT",
+    name: "Vitest",
+    desc: "Unit & integration tests, mocking, coverage reports",
+    level: "Intermediate",
+  },
+  {
+    icon: "GIT",
+    name: "Git",
+    desc: "Branch strategy, conventional commits, rebase",
+    level: "Proficient",
+  },
+  {
+    icon: "RLW",
+    name: "Railway",
+    desc: "PostgreSQL hosting, environment variables, logs",
+    level: "Proficient",
+  },
+  {
+    icon: "VRL",
+    name: "Vercel",
+    desc: "Deployments, preview URLs, edge config, analytics",
+    level: "Advanced",
+  },
+  {
+    icon: "CLD",
+    name: "Cloudinary",
+    desc: "Image upload, transformation, CDN delivery",
+    level: "Proficient",
+  },
 ];
 
-function CategoryBlock({ label, cards }: { label: string; cards: SkillCard[] }) {
+function CategoryBlock({
+  label,
+  cards,
+}: {
+  label: string;
+  cards: SkillCard[];
+}) {
   return (
     <div className="mb-16 last:mb-0">
       {/* Category header */}
@@ -53,7 +149,10 @@ function CategoryBlock({ label, cards }: { label: string; cards: SkillCard[] }) 
             <div className="font-sans font-bold text-[17px] tracking-[-0.3px] uppercase text-txt mb-2">
               {card.name}
             </div>
-            <div className="font-mono text-[11px] leading-[1.6] tracking-[0.3px] mb-4" style={{ color: 'var(--color-txt-skill-desc)' }}>
+            <div
+              className="font-mono text-[11px] leading-[1.6] tracking-[0.3px] mb-4"
+              style={{ color: "var(--color-txt-skill-desc)" }}
+            >
               {card.desc}
             </div>
           </div>
@@ -95,8 +194,8 @@ export default function Skills() {
         {/* Categories */}
         <div className="reveal">
           <CategoryBlock label="Frontend" cards={frontend} />
-          <CategoryBlock label="Backend"  cards={backend}  />
-          <CategoryBlock label="Tooling"  cards={tooling}  />
+          <CategoryBlock label="Backend" cards={backend} />
+          <CategoryBlock label="Tooling" cards={tooling} />
         </div>
       </div>
     </section>
