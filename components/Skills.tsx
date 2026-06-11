@@ -53,12 +53,9 @@ function CategoryBlock({ label, cards }: { label: string; cards: SkillCard[] }) 
             <div className="font-sans font-bold text-[17px] tracking-[-0.3px] uppercase text-txt mb-2">
               {card.name}
             </div>
-            <div className="font-mono text-[11px] leading-[1.6] text-txt-muted tracking-[0.3px] mb-4">
+            <div className="font-mono text-[11px] leading-[1.6] tracking-[0.3px] mb-4" style={{ color: 'var(--color-txt-skill-desc)' }}>
               {card.desc}
             </div>
-            <span className="font-mono text-[9px] tracking-[2px] uppercase text-txt-muted opacity-65">
-              {card.level}
-            </span>
           </div>
         ))}
       </div>
