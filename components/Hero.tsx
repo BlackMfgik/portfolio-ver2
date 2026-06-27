@@ -58,10 +58,8 @@ export default function Hero() {
         </Link>
       </div>
 
-      {/* ── Right column (ASCII canvas visible through) ──────── */}
       <div className="flex items-center justify-center relative overflow-hidden max-[900px]:hidden" />
 
-      {/* ── Bottom meta bar ──────────────────────────────────── */}
       <div className="absolute bottom-9 left-10 right-10 flex justify-between font-mono text-[10px] tracking-[3px] uppercase text-txt-muted z-[2] max-[900px]:left-5 max-[900px]:right-5 max-[900px]:bottom-5">
         <div>Handcrafted with precision</div>
         <div>© 2026</div>
