@@ -118,14 +118,9 @@ export default function Projects() {
       id="projects"
       className="relative py-[140px] px-10 z-[1] max-[900px]:py-[100px] max-[900px]:px-5"
     >
-      {/* Ghost section number */}
       <div className="section-number">003</div>
-
-      {/* Section label */}
       <div className="section-label reveal">Selected Work</div>
-
       <div className="max-w-[1200px] mx-auto">
-        {/* Grid */}
         <div className="projects-grid grid grid-cols-2 border-t border-line max-[900px]:grid-cols-1">
           {projects.map((p) => (
             <ProjectCard key={p.index} {...p} />

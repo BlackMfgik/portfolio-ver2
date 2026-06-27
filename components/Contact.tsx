@@ -19,13 +19,8 @@ export default function Contact() {
       id="contact"
       className="relative py-[140px] px-10 z-[1] max-[900px]:py-[100px] max-[900px]:px-5"
     >
-      {/* Ghost section number */}
       <div className="section-number">004</div>
-
-      {/* Section label */}
       <div className="section-label reveal">Contact</div>
-
-      {/* Centered content */}
       <div className="max-w-[800px] mx-auto text-center reveal">
         <h2
           className="font-sans font-extrabold leading-[0.88] tracking-[-3px] uppercase mb-7"

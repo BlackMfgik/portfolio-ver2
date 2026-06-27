@@ -131,7 +131,6 @@ function CategoryBlock({
 }) {
   return (
     <div className="mb-16 last:mb-0">
-      {/* Category header */}
       <div className="flex items-center gap-3 py-5 border-b border-line">
         <div className="w-1.5 h-1.5 rounded-full bg-accent opacity-50" />
         <span className="font-mono text-[10px] tracking-[4px] uppercase text-txt-muted">
@@ -139,7 +138,6 @@ function CategoryBlock({
         </span>
       </div>
 
-      {/* 2-column grid */}
       <div className="grid grid-cols-2 max-[900px]:grid-cols-1">
         {cards.map((card) => (
           <div key={card.name} className="skill-card">
@@ -168,14 +166,9 @@ export default function Skills() {
       id="skills"
       className="relative py-[140px] px-10 z-[1] max-[900px]:py-[100px] max-[900px]:px-5"
     >
-      {/* Ghost section number */}
       <div className="section-number">002</div>
-
-      {/* Section label */}
       <div className="section-label reveal">Tech Stack</div>
-
       <div className="max-w-[1200px] mx-auto">
-        {/* Header */}
         <div className="reveal mb-20 max-[900px]:mb-12">
           <h2
             className="font-sans font-extrabold leading-[0.9] tracking-[-2px] uppercase mb-6"
@@ -191,7 +184,6 @@ export default function Skills() {
           </p>
         </div>
 
-        {/* Categories */}
         <div className="reveal">
           <CategoryBlock label="Frontend" cards={frontend} />
           <CategoryBlock label="Backend" cards={backend} />

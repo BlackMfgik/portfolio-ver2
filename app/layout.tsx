@@ -107,16 +107,12 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-        {/* Favicon */}
         <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-
-        {/* Google Search Console */}
         <meta
           name="google-site-verification"
           content="googlec72bb84fadc85dad"
         />
 
-        {/* Fonts */}
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link
           rel="preconnect"
@@ -128,13 +124,11 @@ export default function RootLayout({
           rel="stylesheet"
         />
 
-        {/* Devicons */}
         <link
           rel="stylesheet"
           href="https://cdn.jsdelivr.net/npm/devicon@2.15.1/devicon.min.css"
         />
 
-        {/* JSON-LD */}
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}

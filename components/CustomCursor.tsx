@@ -16,24 +16,20 @@ export default function CustomCursor() {
     let rx = -100,
       ry = -100;
     let rafId: number;
-    let dirty = false; // dot updates only when mouse actually moved
+    let dirty = false;
 
-    // ── Mouse position: just store coords, no DOM writes here ────
     const onMouseMove = (e: MouseEvent) => {
       mx = e.clientX;
       my = e.clientY;
       dirty = true;
     };
 
-    // ── Single rAF loop: dot + ring both updated here ────────────
     const animate = () => {
-      // Dot — instant snap, but inside rAF so it's always in sync with the frame
       if (dirty) {
         dot.style.transform = `translate(${mx}px,${my}px) translate(-50%,-50%)`;
         dirty = false;
       }
 
-      // Ring — lerp follow
       rx += (mx - rx) * 0.15;
       ry += (my - ry) * 0.15;
       ring.style.transform = `translate(${rx}px,${ry}px) translate(-50%,-50%)`;
@@ -41,7 +37,6 @@ export default function CustomCursor() {
       rafId = requestAnimationFrame(animate);
     };
 
-    // ── Hover state via delegated event ──────────────────────────
     const onOver = (e: MouseEvent) => {
       ring.classList.toggle(
         "hovering",
@@ -58,7 +53,6 @@ export default function CustomCursor() {
       ring.style.opacity = "1";
     };
 
-    // passive: true → browser won't wait for preventDefault → smoother scroll + cursor
     document.addEventListener("mousemove", onMouseMove, { passive: true });
     document.addEventListener("mouseover", onOver, { passive: true });
     document.addEventListener("mouseleave", onLeave);
