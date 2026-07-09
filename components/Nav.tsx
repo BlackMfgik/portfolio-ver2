@@ -9,8 +9,29 @@ const navLinks = [
   { href: "#projects", label: "Work" },
 ];
 
-export default function Nav() {
+interface NavProps {
+  faceMode?: boolean;
+  onToggleFaceMode?: () => void;
+}
+
+export default function Nav({ faceMode = false, onToggleFaceMode }: NavProps) {
   const [menuOpen, setMenuOpen] = useState(false);
+  const designLabel = faceMode
+    ? "Disable red ASCII face"
+    : "Enable red ASCII face";
+  const renderDesignToggle = (className = "") =>
+    onToggleFaceMode ? (
+      <button
+        type="button"
+        onClick={onToggleFaceMode}
+        aria-label={designLabel}
+        aria-pressed={faceMode}
+        title={designLabel}
+        className={`design-toggle ${faceMode ? "is-active" : ""} ${className}`}
+      >
+        <span aria-hidden="true">X_X</span>
+      </button>
+    ) : null;
 
   useEffect(() => {
     const onResize = () => {
@@ -45,25 +66,29 @@ export default function Nav() {
               {label}
             </Link>
           ))}
+          {renderDesignToggle()}
           <div className="w-12 h-px bg-current opacity-25" />
           <Link href="#contact" className="nav-link">
             Contact
           </Link>
         </div>
 
-        <button
-          onClick={() => setMenuOpen((v) => !v)}
-          aria-label="Toggle menu"
-          aria-expanded={menuOpen}
-          className="hidden max-[900px]:flex flex-col justify-center items-end gap-1.5 w-10 h-10 bg-transparent border-0 p-1"
-        >
-          <span
-            className={`block h-px bg-txt-muted transition-all duration-300 ${menuOpen ? "w-6 rotate-45 translate-y-[7px]" : "w-6"}`}
-          />
-          <span
-            className={`block h-px bg-txt-muted transition-all duration-300 ${menuOpen ? "w-6 -rotate-45 -translate-y-[3px]" : "w-4"}`}
-          />
-        </button>
+        <div className="hidden max-[900px]:flex items-center gap-3">
+          {renderDesignToggle("design-toggle-mobile")}
+          <button
+            onClick={() => setMenuOpen((v) => !v)}
+            aria-label="Toggle menu"
+            aria-expanded={menuOpen}
+            className="flex flex-col justify-center items-end gap-1.5 w-10 h-10 bg-transparent border-0 p-1"
+          >
+            <span
+              className={`block h-px bg-txt-muted transition-all duration-300 ${menuOpen ? "w-6 rotate-45 translate-y-[7px]" : "w-6"}`}
+            />
+            <span
+              className={`block h-px bg-txt-muted transition-all duration-300 ${menuOpen ? "w-6 -rotate-45 -translate-y-[3px]" : "w-4"}`}
+            />
+          </button>
+        </div>
       </nav>
 
       <div

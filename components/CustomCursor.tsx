@@ -4,64 +4,55 @@ import { useEffect, useRef } from "react";
 
 export default function CustomCursor() {
   const dotRef = useRef<HTMLDivElement>(null);
-  const ringRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const dot = dotRef.current;
-    const ring = ringRef.current;
-    if (!dot || !ring) return;
+    const canUseCustomCursor =
+      window.matchMedia("(hover: hover) and (pointer: fine)").matches;
+
+    if (!dot || !canUseCustomCursor) return;
 
     let mx = -100,
       my = -100;
-    let rx = -100,
-      ry = -100;
     let rafId: number;
     let dirty = false;
+    let ready = false;
 
     const onMouseMove = (e: MouseEvent) => {
       mx = e.clientX;
       my = e.clientY;
+      if (!ready) {
+        document.documentElement.classList.add("custom-cursor-ready");
+        ready = true;
+      }
       dirty = true;
     };
 
     const animate = () => {
       if (dirty) {
         dot.style.transform = `translate(${mx}px,${my}px) translate(-50%,-50%)`;
+        dot.style.opacity = "1";
         dirty = false;
       }
-
-      rx += (mx - rx) * 0.15;
-      ry += (my - ry) * 0.15;
-      ring.style.transform = `translate(${rx}px,${ry}px) translate(-50%,-50%)`;
 
       rafId = requestAnimationFrame(animate);
     };
 
-    const onOver = (e: MouseEvent) => {
-      ring.classList.toggle(
-        "hovering",
-        !!(e.target as Element).closest('a, button, [role="button"]'),
-      );
-    };
-
     const onLeave = () => {
       dot.style.opacity = "0";
-      ring.style.opacity = "0";
     };
     const onEnter = () => {
       dot.style.opacity = "1";
-      ring.style.opacity = "1";
     };
 
     document.addEventListener("mousemove", onMouseMove, { passive: true });
-    document.addEventListener("mouseover", onOver, { passive: true });
     document.addEventListener("mouseleave", onLeave);
     document.addEventListener("mouseenter", onEnter);
     rafId = requestAnimationFrame(animate);
 
     return () => {
+      document.documentElement.classList.remove("custom-cursor-ready");
       document.removeEventListener("mousemove", onMouseMove);
-      document.removeEventListener("mouseover", onOver);
       document.removeEventListener("mouseleave", onLeave);
       document.removeEventListener("mouseenter", onEnter);
       cancelAnimationFrame(rafId);
@@ -69,9 +60,6 @@ export default function CustomCursor() {
   }, []);
 
   return (
-    <>
-      <div id="cursor-dot" ref={dotRef} aria-hidden="true" />
-      <div id="cursor-ring" ref={ringRef} aria-hidden="true" />
-    </>
+    <div id="cursor-dot" ref={dotRef} aria-hidden="true" />
   );
 }
