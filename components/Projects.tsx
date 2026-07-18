@@ -62,7 +62,7 @@ function ProjectCard({
       className={[
         "project-card reveal h-full flex flex-col px-11 pt-11 pb-9 gap-5 border-b border-line",
         "max-[900px]:px-7 max-[900px]:py-8 max-[900px]:gap-4",
-        coming ? "opacity-35 cursor-default" : "hover:bg-surface",
+        coming ? "opacity-35 cursor-default" : "",
       ].join(" ")}
     >
       <div className="flex justify-between items-start font-mono text-[10px] tracking-[3px] uppercase text-txt-muted">

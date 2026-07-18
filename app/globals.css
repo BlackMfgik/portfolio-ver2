@@ -45,12 +45,9 @@ body {
   overflow-x: hidden;
 }
 
-:root.custom-cursor-ready body,
-:root.custom-cursor-ready a,
-:root.custom-cursor-ready button,
-:root.custom-cursor-ready input,
-:root.custom-cursor-ready [role="button"] {
-  cursor: none;
+:root.custom-cursor-ready,
+:root.custom-cursor-ready * {
+  cursor: none !important;
 }
 
 #cursor-dot {
@@ -63,8 +60,10 @@ body {
   will-change: transform;
   width: 5px;
   height: 5px;
-  background: var(--color-txt);
+  background: rgba(255, 255, 255, 0.01);
   border-radius: 50%;
+  backdrop-filter: grayscale(1) invert(1);
+  -webkit-backdrop-filter: grayscale(1) invert(1);
   transition: opacity 0.18s ease;
 }
 
