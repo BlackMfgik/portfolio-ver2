@@ -1,3 +1,5 @@
+import BlackHoleText from "@/components/BlackHoleText";
+
 interface SkillCard {
   icon: string;
   name: string;
@@ -134,7 +136,7 @@ function CategoryBlock({
       <div className="flex items-center gap-3 py-5 border-b border-line">
         <div className="w-1.5 h-1.5 rounded-full bg-accent opacity-50" />
         <span className="font-mono text-[10px] tracking-[4px] uppercase text-txt-muted">
-          {label}
+          <BlackHoleText text={label} />
         </span>
       </div>
 
@@ -142,10 +144,10 @@ function CategoryBlock({
         {cards.map((card) => (
           <div key={card.name} className="skill-card">
             <span className="font-mono text-[13px] tracking-[1px] text-txt-muted opacity-60 block mb-3">
-              {card.icon}
+              <BlackHoleText text={card.icon} />
             </span>
             <div className="font-sans font-bold text-[17px] tracking-[-0.3px] uppercase text-txt mb-2">
-              {card.name}
+              <BlackHoleText text={card.name} />
             </div>
             <div
               className="font-mono text-[11px] leading-[1.6] tracking-[0.3px] mb-4"
@@ -167,16 +169,18 @@ export default function Skills() {
       className="relative py-[140px] px-10 z-[1] max-[900px]:py-[100px] max-[900px]:px-5"
     >
       <div className="section-number">002</div>
-      <div className="section-label reveal">Tech Stack</div>
+      <div className="section-label reveal">
+        <BlackHoleText text="Tech Stack" />
+      </div>
       <div className="max-w-[1200px] mx-auto">
         <div className="reveal mb-20 max-[900px]:mb-12">
           <h2
             className="font-sans font-extrabold leading-[0.9] tracking-[-2px] uppercase mb-6"
             style={{ fontSize: "clamp(44px, 8vw, 110px)" }}
           >
-            <span>TECH</span>
+            <BlackHoleText text="TECH" />
             <br />
-            <span className="text-ghost">STACK</span>
+            <BlackHoleText text="STACK" className="text-ghost" />
           </h2>
           <p className="font-mono text-[13px] text-txt-muted leading-[1.9] max-w-[500px]">
             Building production fullstack applications with these technologies.

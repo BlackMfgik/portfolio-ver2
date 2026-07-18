@@ -1,3 +1,5 @@
+import BlackHoleText from "@/components/BlackHoleText";
+
 const stats = [
   { value: "4+", label: "Pet Projects" },
   { value: "∞", label: "Commits" },
@@ -12,7 +14,9 @@ export default function About() {
       className="relative py-[140px] px-10 z-[1] max-[900px]:py-[100px] max-[900px]:px-5"
     >
       <div className="section-number">001</div>
-      <div className="section-label reveal">About</div>
+      <div className="section-label reveal">
+        <BlackHoleText text="About" />
+      </div>
       <div
         className="max-w-[1200px] mx-auto items-start max-[900px]:flex max-[900px]:flex-col max-[900px]:gap-14"
         style={{
@@ -26,9 +30,10 @@ export default function About() {
             className="font-sans font-bold leading-[0.9] tracking-[-2px] uppercase mb-9 max-[900px]:text-[32px] max-[900px]:tracking-[-1.5px]"
             style={{ fontSize: "42px" }}
           >
-            Building <span className="text-accent">digital</span>
+            <BlackHoleText text="Building" />{" "}
+            <BlackHoleText text="digital" className="text-accent" />
             <br />
-            experiences
+            <BlackHoleText text="experiences" />
           </h2>
           <p className="font-sans text-[15px] leading-[1.7] tracking-[-0.2px] text-txt-muted mb-5">
             Fullstack developer with a passion for clean architecture and
@@ -51,10 +56,10 @@ export default function About() {
                 className="font-sans font-extrabold leading-[0.88] tracking-[-3px] text-txt mb-2.5 max-[900px]:text-[48px] max-[900px]:tracking-[-2px]"
                 style={{ fontSize: "64px" }}
               >
-                {value}
+                <BlackHoleText text={value} />
               </div>
               <div className="font-mono text-[10px] tracking-[3px] uppercase text-txt-muted">
-                {label}
+                <BlackHoleText text={label} />
               </div>
             </div>
           ))}

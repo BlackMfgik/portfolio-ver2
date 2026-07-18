@@ -1,3 +1,5 @@
+import BlackHoleText from "@/components/BlackHoleText";
+
 const contactLinks = [
   { label: "Email", href: "mailto:lanovui0902@gmail.com" },
   { label: "GitHub", href: "https://github.com/BlackMfgik", external: true },
@@ -20,15 +22,18 @@ export default function Contact() {
       className="relative py-[140px] px-10 z-[1] max-[900px]:py-[100px] max-[900px]:px-5"
     >
       <div className="section-number">004</div>
-      <div className="section-label reveal">Contact</div>
+      <div className="section-label reveal">
+        <BlackHoleText text="Contact" />
+      </div>
       <div className="max-w-[800px] mx-auto text-center reveal">
         <h2
           className="font-sans font-extrabold leading-[0.88] tracking-[-3px] uppercase mb-7"
           style={{ fontSize: "clamp(36px, 5vw, 64px)" }}
         >
-          Let&apos;s build
+          <BlackHoleText text="Let's build" />
           <br />
-          <span className="text-ghost">something</span> together
+          <BlackHoleText text="something" className="text-ghost" />{" "}
+          <BlackHoleText text="together" />
         </h2>
 
         <p className="font-sans text-[15px] leading-[1.7] tracking-[-0.2px] text-txt-muted mb-[52px]">
@@ -46,7 +51,7 @@ export default function Contact() {
               rel={external ? "noopener noreferrer" : undefined}
               className="contact-pill"
             >
-              {label}
+              <BlackHoleText text={label} />
             </a>
           ))}
         </div>

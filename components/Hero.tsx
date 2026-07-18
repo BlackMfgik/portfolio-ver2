@@ -1,4 +1,5 @@
 import Link from "next/link";
+import BlackHoleText from "@/components/BlackHoleText";
 
 export default function Hero() {
   return (
@@ -32,9 +33,9 @@ export default function Hero() {
             animation: "fadeUp 1s cubic-bezier(0.2,0.7,0.2,1) 0.4s both",
           }}
         >
-          !Aøki
+          <BlackHoleText text={"!A\u00f8ki"} />
           <br />
-          <span className="text-accent">gahara</span>
+          <BlackHoleText text="gahara" className="text-accent" />
         </h1>
 
         <p
@@ -54,7 +55,8 @@ export default function Hero() {
             animation: "fadeUp 1s cubic-bezier(0.2,0.7,0.2,1) 0.8s both",
           }}
         >
-          View Work <span className="arrow">→</span>
+          <BlackHoleText text="View Work" />{" "}
+          <span className="arrow">{"\u2192"}</span>
         </Link>
       </div>
 

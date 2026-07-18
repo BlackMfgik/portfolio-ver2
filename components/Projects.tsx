@@ -1,4 +1,5 @@
 import Link from "next/link";
+import BlackHoleText from "@/components/BlackHoleText";
 
 interface Project {
   index: string;
@@ -65,15 +66,19 @@ function ProjectCard({
       ].join(" ")}
     >
       <div className="flex justify-between items-start font-mono text-[10px] tracking-[3px] uppercase text-txt-muted">
-        <span className="text-accent">{index}</span>
-        <span>{year}</span>
+        <span className="text-accent">
+          <BlackHoleText text={index} />
+        </span>
+        <span>
+          <BlackHoleText text={year} />
+        </span>
       </div>
 
       <h3
         className="font-sans font-bold leading-[0.95] tracking-[-1px] uppercase text-txt"
         style={{ fontSize: "clamp(28px, 3.5vw, 46px)" }}
       >
-        {title}
+        <BlackHoleText text={title} />
       </h3>
 
       <p
@@ -90,7 +95,7 @@ function ProjectCard({
               key={tag}
               className="font-mono text-[9px] tracking-[2px] uppercase text-txt-muted px-[14px] py-[7px] border border-line rounded-full"
             >
-              {tag}
+              <BlackHoleText text={tag} />
             </span>
           ))}
         </div>
@@ -119,7 +124,9 @@ export default function Projects() {
       className="relative py-[140px] px-10 z-[1] max-[900px]:py-[100px] max-[900px]:px-5"
     >
       <div className="section-number">003</div>
-      <div className="section-label reveal">Selected Work</div>
+      <div className="section-label reveal">
+        <BlackHoleText text="Selected Work" />
+      </div>
       <div className="max-w-[1200px] mx-auto">
         <div className="projects-grid grid grid-cols-2 border-t border-line max-[900px]:grid-cols-1">
           {projects.map((p) => (

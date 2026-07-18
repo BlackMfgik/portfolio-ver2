@@ -18,14 +18,22 @@ export default function CustomCursor() {
     let dirty = false;
     let ready = false;
 
-    const onMouseMove = (e: MouseEvent) => {
-      mx = e.clientX;
-      my = e.clientY;
+    const moveCursor = (x: number, y: number) => {
+      mx = x;
+      my = y;
       if (!ready) {
         document.documentElement.classList.add("custom-cursor-ready");
         ready = true;
       }
       dirty = true;
+    };
+
+    const onMouseMove = (e: MouseEvent) => {
+      moveCursor(e.clientX, e.clientY);
+    };
+
+    const onPointerMove = (e: PointerEvent) => {
+      moveCursor(e.clientX, e.clientY);
     };
 
     const animate = () => {
@@ -46,6 +54,7 @@ export default function CustomCursor() {
     };
 
     document.addEventListener("mousemove", onMouseMove, { passive: true });
+    document.addEventListener("pointermove", onPointerMove, { passive: true });
     document.addEventListener("mouseleave", onLeave);
     document.addEventListener("mouseenter", onEnter);
     rafId = requestAnimationFrame(animate);
@@ -53,6 +62,7 @@ export default function CustomCursor() {
     return () => {
       document.documentElement.classList.remove("custom-cursor-ready");
       document.removeEventListener("mousemove", onMouseMove);
+      document.removeEventListener("pointermove", onPointerMove);
       document.removeEventListener("mouseleave", onLeave);
       document.removeEventListener("mouseenter", onEnter);
       cancelAnimationFrame(rafId);
