@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import SmoothScroll from "@/components/SmoothScroll";
 
 export const metadata: Metadata = {
   title: "!Aøkigahara — Fullstack Developer",
@@ -138,7 +139,7 @@ export default function RootLayout({
         className="bg-bg text-txt antialiased overflow-x-hidden"
         suppressHydrationWarning
       >
-        {children}
+        <SmoothScroll>{children}</SmoothScroll>
       </body>
     </html>
   );

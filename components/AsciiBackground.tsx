@@ -230,12 +230,14 @@ function getCoverDistance(px: number, py: number, rect: CoverRect) {
 function getCoverInfluence(px: number, py: number, rect: CoverRect) {
   const distance = getCoverDistance(px, py, rect);
   if (distance > COVER_TRANSITION_SIZE) return 0;
-  return distance === 0
-    ? 1
-    : smooth01(1 - distance / COVER_TRANSITION_SIZE);
+  return distance === 0 ? 1 : smooth01(1 - distance / COVER_TRANSITION_SIZE);
 }
 
-function sampleCoverPixel(source: CoverSource, u: number, v: number): CoverSample {
+function sampleCoverPixel(
+  source: CoverSource,
+  u: number,
+  v: number,
+): CoverSample {
   const x = clamp(Math.floor(u * (source.width - 1)), 0, source.width - 1);
   const y = clamp(Math.floor(v * (source.height - 1)), 0, source.height - 1);
   const index = (y * source.width + x) * 4;
@@ -315,7 +317,10 @@ function drawCoverSquareLift(
 
   for (const [x, y] of corners) {
     const corner = ctx.createRadialGradient(x, y, 0, x, y, cornerRadius);
-    corner.addColorStop(0, `rgba(120, 84, 96, ${alpha * COVER_CORNER_LIFT_ALPHA})`);
+    corner.addColorStop(
+      0,
+      `rgba(120, 84, 96, ${alpha * COVER_CORNER_LIFT_ALPHA})`,
+    );
     corner.addColorStop(1, "rgba(120, 84, 96, 0)");
     ctx.fillStyle = corner;
     ctx.fillRect(0, 0, size, size);
@@ -399,7 +404,7 @@ function drawAsciiAlbumCover(
       const v = clamp01((py - rect.y) / rect.size);
       const sample = sampleCoverPixel(source, u, v);
       const texture =
-        Math.sin((u * 10.4 + v * 4.2) + time * 1.4) * 0.04 +
+        Math.sin(u * 10.4 + v * 4.2 + time * 1.4) * 0.04 +
         Math.sin((u - v) * 18.0 - time * 1.7) * 0.035;
       const contrast = clamp01(
         sample.luma * 0.82 + sample.saturation * 0.28 + texture,
@@ -541,7 +546,12 @@ export default function AsciiBackground({
       );
       coverSource = {
         image: coverImage,
-        data: sourceCtx.getImageData(0, 0, COVER_SAMPLE_SIZE, COVER_SAMPLE_SIZE),
+        data: sourceCtx.getImageData(
+          0,
+          0,
+          COVER_SAMPLE_SIZE,
+          COVER_SAMPLE_SIZE,
+        ),
         width: COVER_SAMPLE_SIZE,
         height: COVER_SAMPLE_SIZE,
       };
@@ -629,7 +639,8 @@ export default function AsciiBackground({
 
       const mx = sharedMouseX / FONT_SIZE;
       const my = sharedMouseY / FONT_SIZE;
-      const backgroundRadiusSq = BACKGROUND_CURSOR_RADIUS * BACKGROUND_CURSOR_RADIUS;
+      const backgroundRadiusSq =
+        BACKGROUND_CURSOR_RADIUS * BACKGROUND_CURSOR_RADIUS;
       const qualityScale =
         frameInterval >= LOW_FPS_INTERVAL
           ? 0.74
@@ -664,7 +675,8 @@ export default function AsciiBackground({
 
         let coverFade = 1;
         if (coverRect) {
-          const coverBlend = getCoverInfluence(cell.px, cell.py, coverRect) * coverMix;
+          const coverBlend =
+            getCoverInfluence(cell.px, cell.py, coverRect) * coverMix;
           coverFade = 1 - coverBlend * 0.96;
         }
 
