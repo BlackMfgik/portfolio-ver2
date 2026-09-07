@@ -42,7 +42,8 @@ const projects: Project[] = [
       "Ukrainian Minecraft network with three servers — Vanilla, Modded and Creative. Live world maps, custom mascot OiOi and an active community on Discord and Telegram.",
     tags: ["Minecraft", "Community", "Live Maps"],
     href: "https://okrip-world.vercel.app",
-    image: "/projects/okrip-world.jpg",
+    image:
+      "https://res.cloudinary.com/dk9yjgta3/image/upload/v1788809687/Screenshot_2026-09-07_223349_ew5p1b.png",
   },
   {
     index: "03 / 04",
