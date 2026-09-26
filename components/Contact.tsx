@@ -5,7 +5,7 @@ const contactLinks = [
   { label: "GitHub", href: "https://github.com/BlackMfgik", external: true },
   {
     label: "LinkedIn",
-    href: "https://www.linkedin.com/in/dmytro-lanovui-75a16638a/",
+    href: "https://www.linkedin.com/in/dmytro-lanovyi/",
     external: true,
   },
   { label: "CV", href: "/cv/dmytro-lanovyi-cv.pdf", external: true },
