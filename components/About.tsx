@@ -36,7 +36,8 @@ export default function About() {
             <BlackHoleText text="experiences" />
           </h2>
           <p className="font-sans text-[15px] leading-[1.7] tracking-[-0.2px] text-txt-muted mb-5">
-            Fullstack developer from Cherkasy, Ukraine. I take a product from an
+            Fullstack developer from Cherkasy, Ukraine, writing code since
+            2024. I take a product from an
             empty repository to production: database schema, REST API,
             integrations, responsive UI, deployment.
           </p>

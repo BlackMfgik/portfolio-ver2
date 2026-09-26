@@ -17,7 +17,7 @@ const engagements: Engagement[] = [
       "Built the website and a player verification system: Discord OAuth → application with Minecraft nickname → moderation in Telegram → whitelist on the game server.",
       "Designed a Turborepo monorepo: Next.js web app, Fastify API with a background worker, shared Zod contracts.",
       "Wrote a Java 21 Paper/Purpur plugin with reliable command delivery, so approved players are never lost between services.",
-      "Integrated live Dynmap world maps through a server-side proxy with a custom themed skin.",
+      "Integrated live Dynmap world maps through a server-side proxy; covered login and the application flow with Vitest tests.",
     ],
     stack: [
       "Next.js",
@@ -35,8 +35,8 @@ const engagements: Engagement[] = [
     period: "2025",
     points: [
       "Delivered a full food e-commerce product: menu, combos, cart, user accounts and an admin panel.",
-      "Implemented auth with JWT and Google OAuth, online payments via WayForPay, SMS and email notifications.",
-      "Built the Fastify REST API with PostgreSQL + Drizzle ORM and an SSR frontend on Next.js App Router.",
+      "Implemented email verification, Google OAuth, 2FA, WayForPay online payments, SMS and email notifications.",
+      "Built the Fastify REST API with PostgreSQL + Drizzle ORM — validation, rate limiting, security headers — and an SSR frontend on Next.js App Router.",
       "Covered frontend and backend with Vitest tests; deployed on Railway.",
     ],
     stack: [

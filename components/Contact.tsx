@@ -8,6 +8,7 @@ const contactLinks = [
     href: "https://www.linkedin.com/in/dmytro-lanovui-75a16638a/",
     external: true,
   },
+  { label: "CV", href: "/cv/dmytro-lanovyi-cv.pdf", external: true },
   {
     label: "Telegram",
     href: "https://t.me/A0klgahara",

@@ -58,16 +58,25 @@ export default function Hero() {
           Open to work · Full-time &amp; freelance · Remote
         </div>
 
-        <Link
-          href="#projects"
-          className="hero-cta"
+        <div
+          className="flex flex-wrap gap-4 max-[900px]:justify-center"
           style={{
             animation: "fadeUp 1s cubic-bezier(0.2,0.7,0.2,1) 0.8s both",
           }}
         >
-          <BlackHoleText text="View Work" />{" "}
-          <span className="arrow">{"\u2192"}</span>
-        </Link>
+          <Link href="#projects" className="hero-cta">
+            <BlackHoleText text="View Work" />{" "}
+            <span className="arrow">{"\u2192"}</span>
+          </Link>
+          <a
+            href="/cv/dmytro-lanovyi-cv.pdf"
+            download="Dmytro_Lanovyi_CV.pdf"
+            className="hero-cta"
+          >
+            <BlackHoleText text="Download CV" />{" "}
+            <span className="arrow">{"\u2193"}</span>
+          </a>
+        </div>
       </div>
 
       <div className="flex items-center justify-center relative overflow-hidden max-[900px]:hidden" />

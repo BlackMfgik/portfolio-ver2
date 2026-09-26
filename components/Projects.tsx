@@ -41,7 +41,7 @@ const projects: Project[] = [
     year: "2025",
     title: "Come By Shop",
     description:
-      "Food ordering platform: SSR storefront, Fastify REST API, WayForPay payments, Google OAuth, SMS & email, admin panel. Tested with Vitest.",
+      "Food ordering platform: SSR storefront, Fastify REST API, WayForPay payments, Google OAuth + 2FA, rate limiting, admin panel. Vitest.",
     tags: ["Next.js", "Fastify", "PostgreSQL", "Drizzle", "Vitest"],
     href: "https://come-by-shop-production.up.railway.app",
     image:
