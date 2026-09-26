@@ -168,7 +168,7 @@ export default function Skills() {
       id="skills"
       className="relative py-[140px] px-10 z-[1] max-[900px]:py-[100px] max-[900px]:px-5"
     >
-      <div className="section-number">002</div>
+      <div className="section-number">003</div>
       <div className="section-label reveal">
         <BlackHoleText text="Tech Stack" />
       </div>

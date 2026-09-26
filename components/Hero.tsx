@@ -45,8 +45,18 @@ export default function Hero() {
           }}
         >
           I build fullstack applications — from database schema and REST API to
-          responsive UI. Clean code, real projects, daily improvement.
+          responsive UI. Shipping commercial projects for real clients since
+          2025.
         </p>
+
+        <div
+          className="font-mono text-[10px] tracking-[3px] uppercase text-txt-muted mb-10 -mt-6"
+          style={{
+            animation: "fadeUp 1s cubic-bezier(0.2,0.7,0.2,1) 0.7s both",
+          }}
+        >
+          Open to work · Full-time &amp; freelance · Remote
+        </div>
 
         <Link
           href="#projects"

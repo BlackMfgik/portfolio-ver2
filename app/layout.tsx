@@ -5,7 +5,7 @@ import SmoothScroll from "@/components/SmoothScroll";
 export const metadata: Metadata = {
   title: "!Aøkigahara — Fullstack Developer",
   description:
-    "!Aokigahara — portfolio of Dmytro Lanovyi, a junior fullstack developer from Cherkasy, Ukraine. Next.js · TypeScript · React · Fastify · PostgreSQL. Open to work, remote-friendly.",
+    "!Aokigahara — portfolio of Dmytro Lanovyi, a fullstack developer from Cherkasy, Ukraine with commercial experience. Next.js · TypeScript · React · Fastify · PostgreSQL. Open to full-time and freelance work, remote.",
   keywords: [
     "!Aokigahara",
     "Aokigahara",
@@ -27,15 +27,15 @@ export const metadata: Metadata = {
     icon: [{ url: "/favicon.svg", type: "image/svg+xml" }],
   },
   robots: "index, follow",
-  metadataBase: new URL("https://portfolio-nu-ashen-35.vercel.app"),
+  metadataBase: new URL("https://aokigahara.dev"),
   alternates: { canonical: "/" },
   openGraph: {
     type: "website",
-    url: "https://portfolio-nu-ashen-35.vercel.app",
+    url: "https://aokigahara.dev",
     siteName: "!Aøkigahara",
     title: "!Aøkigahara — Dmytro Lanovyi | Fullstack Developer",
     description:
-      "Junior fullstack developer from Ukraine. Next.js · TypeScript · React · Fastify · PostgreSQL. Open to work and remote positions.",
+      "Fullstack developer from Ukraine with commercial projects in production. Next.js · TypeScript · React · Fastify · PostgreSQL. Open to full-time and freelance work.",
     locale: "en_US",
   },
   twitter: {
@@ -51,13 +51,13 @@ const jsonLd = {
   "@graph": [
     {
       "@type": "Person",
-      "@id": "https://portfolio-nu-ashen-35.vercel.app/#person",
+      "@id": "https://aokigahara.dev/#person",
       name: "Dmytro Lanovyi",
       alternateName: ["!Aokigahara", "!Aøkigahara", "Aokigahara"],
       jobTitle: "Fullstack Developer",
       description:
-        "Junior fullstack developer specialising in Next.js, React, TypeScript, Fastify, Drizzle ORM and PostgreSQL.",
-      url: "https://portfolio-nu-ashen-35.vercel.app/",
+        "Fullstack developer specialising in Next.js, React, TypeScript, Fastify, Drizzle ORM and PostgreSQL. Freelance commercial projects since 2025.",
+      url: "https://aokigahara.dev/",
       email: "lanovui0902@gmail.com",
       address: {
         "@type": "PostalAddress",
@@ -90,14 +90,15 @@ const jsonLd = {
       sameAs: [
         "https://github.com/BlackMfgik",
         "https://www.linkedin.com/in/dmytro-lanovui-75a16638a/",
+        "https://t.me/A0klgahara",
       ],
     },
     {
       "@type": "WebSite",
-      "@id": "https://portfolio-nu-ashen-35.vercel.app/#website",
+      "@id": "https://aokigahara.dev/#website",
       name: "!Aøkigahara",
-      url: "https://portfolio-nu-ashen-35.vercel.app/",
-      author: { "@id": "https://portfolio-nu-ashen-35.vercel.app/#person" },
+      url: "https://aokigahara.dev/",
+      author: { "@id": "https://aokigahara.dev/#person" },
     },
   ],
 };

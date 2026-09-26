@@ -20,50 +20,44 @@ interface Project {
   href: string;
   image: string;
   coming?: boolean;
+  commercial?: boolean;
 }
 
 const projects: Project[] = [
   {
-    index: "01 / 04",
-    year: "2025",
-    title: "Come By Shop",
-    description:
-      "Full-featured food ordering app. Next.js App Router (SSR), Fastify REST API, PostgreSQL + Drizzle ORM, JWT + Google OAuth, Zustand, TanStack Query, Resend email, Cloudinary image upload. Covered with Vitest.",
-    tags: ["Next.js", "Fastify", "PostgreSQL", "JWT", "Vitest"],
-    href: "https://come-by-shop-production.up.railway.app",
-    image:
-      "https://res.cloudinary.com/dk9yjgta3/image/upload/f_auto/q_auto/Screenshot_2026-08-31_093458_pp6ymh.png",
-  },
-  {
-    index: "02 / 04",
+    index: "01 / 03",
     year: "2026",
     title: "Okrip World",
     description:
-      "Ukrainian Minecraft network with three servers — Vanilla, Modded and Creative. Live world maps, custom mascot OiOi and an active community on Discord and Telegram.",
-    tags: ["Minecraft", "Community", "Live Maps"],
-    href: "https://okrip-world.vercel.app",
+      "Site and player verification for a Minecraft network: Discord OAuth, Telegram moderation, custom Java plugin, live Dynmap maps.",
+    tags: ["Next.js", "Fastify", "PostgreSQL", "Java", "Turborepo"],
+    href: "https://okrip-world-production.up.railway.app",
     image:
       "https://res.cloudinary.com/dk9yjgta3/image/upload/v1788809687/Screenshot_2026-09-07_223349_ew5p1b.png",
+    commercial: true,
   },
   {
-    index: "03 / 04",
+    index: "02 / 03",
+    year: "2025",
+    title: "Come By Shop",
+    description:
+      "Food ordering platform: SSR storefront, Fastify REST API, WayForPay payments, Google OAuth, SMS & email, admin panel. Tested with Vitest.",
+    tags: ["Next.js", "Fastify", "PostgreSQL", "Drizzle", "Vitest"],
+    href: "https://come-by-shop-production.up.railway.app",
+    image:
+      "https://res.cloudinary.com/dk9yjgta3/image/upload/f_auto/q_auto/Screenshot_2026-08-31_093458_pp6ymh.png",
+    commercial: true,
+  },
+  {
+    index: "03 / 03",
     year: "2026",
     title: "Nami Gear",
     description:
-      "E-commerce storefront for Artisan mousepads and gaming peripheral accessories. SPA-style routing, hero carousel, product options modal and series-tab catalog.",
-    tags: ["HTML", "CSS", "JavaScript", "E-commerce"],
+      "Store for gaming mousepads and glides on Next.js 16: Neon PostgreSQL catalog, cart with Zustand, live stock sync via TanStack Query.",
+    tags: ["Next.js 16", "Neon", "Zustand", "TanStack Query", "Tailwind 4"],
     href: "https://nami-gear-nu.vercel.app",
     image:
       "https://res.cloudinary.com/dk9yjgta3/image/upload/f_auto/q_auto/Screenshot_2026-08-28_001122_rzff0g.png",
-  },
-  {
-    index: "04 / 04",
-    year: "2026",
-    title: "Coming Soon",
-    description: "Next project in development. Stay tuned for updates.",
-    href: "#",
-    image: "/projects/coming-soon.jpg",
-    coming: true,
   },
 ];
 
@@ -74,8 +68,17 @@ function ProjectCard({
   project: Project;
   innerRef: (el: HTMLDivElement | null) => void;
 }) {
-  const { index, year, title, description, tags, href, image, coming } =
-    project;
+  const {
+    index,
+    year,
+    title,
+    description,
+    tags,
+    href,
+    image,
+    coming,
+    commercial,
+  } = project;
 
   const inner = (
     <div
@@ -93,14 +96,21 @@ function ProjectCard({
             fill
             sizes="(max-width: 900px) 92vw, 82vw"
             className="project-slide-img"
-            priority={index === "01 / 04"}
+            priority={index === "01 / 03"}
           />
         </div>
 
         <div className="project-slide-body flex flex-col flex-1 min-h-0 px-9 pt-7 pb-8 gap-4 max-[900px]:px-6 max-[900px]:pt-6 max-[900px]:pb-7">
           <div className="flex justify-between items-start font-mono text-[10px] tracking-[3px] uppercase text-txt-muted">
-            <span className="text-accent">
-              <BlackHoleText text={index} />
+            <span className="flex items-center gap-4">
+              <span className="text-accent">
+                <BlackHoleText text={index} />
+              </span>
+              {commercial && (
+                <span className="px-[10px] py-[4px] -my-[4px] border border-line rounded-full text-txt">
+                  <BlackHoleText text="Commercial" />
+                </span>
+              )}
             </span>
             <span>
               <BlackHoleText text={year} />
@@ -340,7 +350,7 @@ export default function Projects() {
       ref={sectionRef}
       className="relative z-[1] min-h-screen flex flex-col justify-center py-[100px] max-[900px]:py-[80px]"
     >
-      <div className="section-number px-10 max-[900px]:px-5">003</div>
+      <div className="section-number px-10 max-[900px]:px-5">004</div>
       <div className="section-label reveal px-10 max-[900px]:px-5">
         <BlackHoleText text="Selected Work" />
       </div>

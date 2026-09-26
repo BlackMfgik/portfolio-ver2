@@ -9,8 +9,8 @@ const contactLinks = [
     external: true,
   },
   {
-    label: "Discord",
-    href: "https://discord.com/users/554465791358140417",
+    label: "Telegram",
+    href: "https://t.me/A0klgahara",
     external: true,
   },
 ];
@@ -21,7 +21,7 @@ export default function Contact() {
       id="contact"
       className="relative py-[140px] px-10 z-[1] max-[900px]:py-[100px] max-[900px]:px-5"
     >
-      <div className="section-number">004</div>
+      <div className="section-number">005</div>
       <div className="section-label reveal">
         <BlackHoleText text="Contact" />
       </div>

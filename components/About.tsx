@@ -1,10 +1,10 @@
 import BlackHoleText from "@/components/BlackHoleText";
 
 const stats = [
-  { value: "4+", label: "Pet Projects" },
-  { value: "∞", label: "Commits" },
-  { value: "4", label: "Core Skills" },
-  { value: "0", label: "Days Without Coding" },
+  { value: "2", label: "Commercial Projects" },
+  { value: "6+", label: "Projects Built" },
+  { value: "3", label: "Apps in Production" },
+  { value: "2025", label: "Freelancing Since" },
 ];
 
 export default function About() {
@@ -36,14 +36,15 @@ export default function About() {
             <BlackHoleText text="experiences" />
           </h2>
           <p className="font-sans text-[15px] leading-[1.7] tracking-[-0.2px] text-txt-muted mb-5">
-            Fullstack developer with a passion for clean architecture and
-            thoughtful design. I bridge the gap between backend reliability and
-            frontend elegance.
+            Fullstack developer from Cherkasy, Ukraine. I take a product from an
+            empty repository to production: database schema, REST API,
+            integrations, responsive UI, deployment.
           </p>
           <p className="font-sans text-[15px] leading-[1.7] tracking-[-0.2px] text-txt-muted">
-            Every project starts with understanding the problem, continues with
-            careful technical decisions, and ends with a product that simply
-            works. No shortcuts, no tutorial-only skills.
+            I&apos;ve built commercial projects for clients — a food ordering
+            platform with online payments and a verification system for a
+            Minecraft network with Discord, Telegram and a custom Java plugin.
+            Now looking for a team where I can grow as an engineer.
           </p>
         </div>
         <div
