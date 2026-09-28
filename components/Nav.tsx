@@ -483,8 +483,14 @@ export default function Nav({
     if (!audio || !playerOpen || !isMusicPlaying) return;
 
     let rafId: number;
+    let lastSynced = -1;
+    // Оновлюємо стан ~10 разів/с замість кожного кадру: інакше весь Nav
+    // перерендерювався 60+ разів/с і відбирав час у прокрутки.
     const syncProgress = () => {
-      setTrackProgress(audio.currentTime);
+      if (Math.abs(audio.currentTime - lastSynced) >= 0.1) {
+        lastSynced = audio.currentTime;
+        setTrackProgress(audio.currentTime);
+      }
       rafId = requestAnimationFrame(syncProgress);
     };
 

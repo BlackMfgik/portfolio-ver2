@@ -1,0 +1,54 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "come-by",
+      "runtimeExecutable": "node",
+      "runtimeArgs": [
+        "C:/Random/Projects/Come by shope versions/Come-by-shope-latest-ssr/node_modules/next/dist/bin/next",
+        "dev",
+        "--webpack",
+        "-p",
+        "3101",
+        "C:/Random/Projects/Come by shope versions/Come-by-shope-latest-ssr/frontend"
+      ],
+      "port": 3101
+    },
+    {
+      "name": "nami-gear",
+      "runtimeExecutable": "node",
+      "runtimeArgs": [
+        "C:/Random/Projects/Nami gear/node_modules/next/dist/bin/next",
+        "dev",
+        "-p",
+        "3102",
+        "C:/Random/Projects/Nami gear"
+      ],
+      "port": 3102
+    },
+    {
+      "name": "okrip-world",
+      "runtimeExecutable": "node",
+      "runtimeArgs": [
+        "C:/Random/Projects/Okrip world versions/okrip world/apps/web/node_modules/next/dist/bin/next",
+        "dev",
+        "-p",
+        "3103",
+        "C:/Random/Projects/Okrip world versions/okrip world/apps/web"
+      ],
+      "port": 3103
+    },
+    {
+      "name": "portfolio-prod",
+      "runtimeExecutable": "node",
+      "runtimeArgs": [
+        "C:/Random/Projects/Portfolio versions/portfolio-nextjs2/node_modules/next/dist/bin/next",
+        "start",
+        "-p",
+        "3100",
+        "C:/Random/Projects/Portfolio versions/portfolio-nextjs2"
+      ],
+      "port": 3100
+    }
+  ]
+}

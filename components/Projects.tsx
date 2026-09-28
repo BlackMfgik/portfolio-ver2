@@ -252,10 +252,12 @@ export default function Projects() {
           const raw = maxDist > 0 ? gsap.utils.clamp(0, 1, dist / maxDist) : 0;
           // прискорена крива спаду — активна картка чіткіше виділяється
           const t = Math.pow(raw, 0.6);
+          // Лише transform + opacity — їх обробляє композитор без
+          // перемальовування. Анімований filter: blur() змушував браузер
+          // заново растеризувати великі картки на кожен тік скролу.
           gsap.set(card, {
             scale: gsap.utils.interpolate(1, 0.62, t),
             opacity: gsap.utils.interpolate(1, 0.28, t),
-            filter: `blur(${gsap.utils.interpolate(0, 4, t)}px)`,
           });
         });
       };
