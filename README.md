@@ -1,4 +1,4 @@
-# Dmytro Lanovyi Portfolio
+# Aokigahara Portfolio
 
 [Live demo](https://portfolio-ver2-bice.vercel.app) · [Repository](https://github.com/BlackMfgik/portfolio-ver2)
 

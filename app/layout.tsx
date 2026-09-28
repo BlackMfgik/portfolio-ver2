@@ -3,14 +3,18 @@ import "./globals.css";
 import SmoothScroll from "@/components/SmoothScroll";
 
 export const metadata: Metadata = {
-  title: "!Aøkigahara — Fullstack Developer",
+  title: "Aokigahara — Fullstack Developer Portfolio",
   description:
-    "!Aokigahara — portfolio of Dmytro Lanovyi, a fullstack developer from Cherkasy, Ukraine with commercial experience. Next.js · TypeScript · React · Fastify · PostgreSQL. Open to full-time and freelance work, remote.",
+    "Aokigahara (!Aøkigahara) — fullstack developer from Ukraine with commercial experience. Aokigahara builds web apps with Next.js · TypeScript · React · Fastify · PostgreSQL. Open to full-time and freelance work, remote.",
+  applicationName: "Aokigahara",
   keywords: [
-    "!Aokigahara",
     "Aokigahara",
+    "!Aokigahara",
     "!Aøkigahara",
-    "Dmytro Lanovyi",
+    "Aokigahara developer",
+    "Aokigahara portfolio",
+    "Aokigahara dev",
+    "aokigahara.dev",
     "fullstack developer",
     "Next.js developer",
     "React developer",
@@ -19,10 +23,10 @@ export const metadata: Metadata = {
     "PostgreSQL",
     "portfolio",
     "Ukraine",
-    "Cherkasy",
-    "junior developer",
   ],
-  authors: [{ name: "Dmytro Lanovyi" }],
+  authors: [{ name: "Aokigahara", url: "https://aokigahara.dev" }],
+  creator: "Aokigahara",
+  publisher: "Aokigahara",
   icons: {
     icon: [{ url: "/favicon.svg", type: "image/svg+xml" }],
   },
@@ -32,17 +36,17 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     url: "https://aokigahara.dev",
-    siteName: "!Aøkigahara",
-    title: "!Aøkigahara — Dmytro Lanovyi | Fullstack Developer",
+    siteName: "Aokigahara",
+    title: "Aokigahara — Fullstack Developer Portfolio",
     description:
-      "Fullstack developer from Ukraine with commercial projects in production. Next.js · TypeScript · React · Fastify · PostgreSQL. Open to full-time and freelance work.",
+      "Aokigahara — fullstack developer from Ukraine with commercial projects in production. Next.js · TypeScript · React · Fastify · PostgreSQL. Open to full-time and freelance work.",
     locale: "en_US",
   },
   twitter: {
-    card: "summary",
-    title: "!Aøkigahara — Fullstack Developer Portfolio",
+    card: "summary_large_image",
+    title: "Aokigahara — Fullstack Developer Portfolio",
     description:
-      "Junior fullstack developer from Ukraine. Next.js · TypeScript · Fastify. Open to work.",
+      "Aokigahara — fullstack developer from Ukraine. Next.js · TypeScript · Fastify. Open to work.",
   },
 };
 
@@ -52,16 +56,15 @@ const jsonLd = {
     {
       "@type": "Person",
       "@id": "https://aokigahara.dev/#person",
-      name: "Dmytro Lanovyi",
-      alternateName: ["!Aokigahara", "!Aøkigahara", "Aokigahara"],
+      name: "Aokigahara",
+      alternateName: ["!Aøkigahara", "!Aokigahara", "Aokigahara dev"],
       jobTitle: "Fullstack Developer",
       description:
-        "Fullstack developer specialising in Next.js, React, TypeScript, Fastify, Drizzle ORM and PostgreSQL. Freelance commercial projects since 2025.",
+        "Aokigahara is a fullstack developer specialising in Next.js, React, TypeScript, Fastify, Drizzle ORM and PostgreSQL. Freelance commercial projects since 2025.",
       url: "https://aokigahara.dev/",
-      email: "lanovui0902@gmail.com",
+      image: "https://aokigahara.dev/opengraph-image",
       address: {
         "@type": "PostalAddress",
-        addressLocality: "Cherkasy",
         addressCountry: "UA",
       },
       knowsAbout: [
@@ -87,18 +90,24 @@ const jsonLd = {
         "Railway",
         "Cloudinary",
       ],
-      sameAs: [
-        "https://github.com/BlackMfgik",
-        "https://www.linkedin.com/in/dmytro-lanovyi/",
-        "https://t.me/A0klgahara",
-      ],
+      sameAs: ["https://github.com/BlackMfgik", "https://t.me/A0klgahara"],
     },
     {
       "@type": "WebSite",
       "@id": "https://aokigahara.dev/#website",
-      name: "!Aøkigahara",
+      name: "Aokigahara",
+      alternateName: ["!Aøkigahara", "!Aokigahara", "aokigahara.dev"],
       url: "https://aokigahara.dev/",
       author: { "@id": "https://aokigahara.dev/#person" },
+      publisher: { "@id": "https://aokigahara.dev/#person" },
+    },
+    {
+      "@type": "ProfilePage",
+      "@id": "https://aokigahara.dev/#profile",
+      name: "Aokigahara — Fullstack Developer Portfolio",
+      url: "https://aokigahara.dev/",
+      isPartOf: { "@id": "https://aokigahara.dev/#website" },
+      mainEntity: { "@id": "https://aokigahara.dev/#person" },
     },
   ],
 };
@@ -110,11 +119,6 @@ export default function RootLayout({
     <html lang="en">
       <head>
         <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-        <meta
-          name="google-site-verification"
-          content="googlec72bb84fadc85dad"
-        />
-
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link
           rel="preconnect"

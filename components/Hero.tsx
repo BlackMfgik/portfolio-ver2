@@ -33,9 +33,14 @@ export default function Hero() {
             animation: "fadeUp 1s cubic-bezier(0.2,0.7,0.2,1) 0.4s both",
           }}
         >
-          <BlackHoleText text={"!A\u00f8ki"} />
-          <br />
-          <BlackHoleText text="gahara" className="text-accent" />
+          <span className="sr-only">
+            Aokigahara — Fullstack Developer
+          </span>
+          <span aria-hidden="true">
+            <BlackHoleText text={"!A\u00f8ki"} />
+            <br />
+            <BlackHoleText text="gahara" className="text-accent" />
+          </span>
         </h1>
 
         <p
@@ -69,8 +74,8 @@ export default function Hero() {
             <span className="arrow">{"\u2192"}</span>
           </Link>
           <a
-            href="/cv/dmytro-lanovyi-cv.pdf"
-            download="Dmytro_Lanovyi_CV.pdf"
+            href="/cv/aokigahara-cv.pdf"
+            download="Aokigahara_CV.pdf"
             className="hero-cta"
           >
             <BlackHoleText text="Download CV" />{" "}

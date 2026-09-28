@@ -23,7 +23,7 @@ export default function Home() {
         <Contact />
       </main>
       <footer className="relative z-[1] py-10 px-10 flex justify-between font-mono text-[10px] tracking-[3px] uppercase text-txt-muted border-t border-line max-[900px]:px-5">
-        <div>!Aøkigahara © 2026</div>
+        <div>!Aøkigahara (Aokigahara) © 2026</div>
         <div>Handcrafted with precision</div>
       </footer>
     </>

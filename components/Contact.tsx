@@ -8,7 +8,7 @@ const contactLinks = [
     href: "https://www.linkedin.com/in/dmytro-lanovyi/",
     external: true,
   },
-  { label: "CV", href: "/cv/dmytro-lanovyi-cv.pdf", external: true },
+  { label: "CV", href: "/cv/aokigahara-cv.pdf", external: true },
   {
     label: "Telegram",
     href: "https://t.me/A0klgahara",
