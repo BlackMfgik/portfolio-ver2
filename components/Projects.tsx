@@ -17,7 +17,7 @@ interface Project {
   title: string;
   description: string;
   tags?: string[];
-  href: string;
+  href?: string;
   image: string;
   coming?: boolean;
   commercial?: boolean;
@@ -31,7 +31,7 @@ const projects: Project[] = [
     description:
       "Site and player verification for a Minecraft network: Discord OAuth, Telegram moderation, custom Java plugin, live Dynmap maps.",
     tags: ["Next.js", "Fastify", "PostgreSQL", "Java", "Turborepo"],
-    href: "https://okrip-world-production.up.railway.app",
+    href: "https://okrip.world",
     image:
       "https://res.cloudinary.com/dk9yjgta3/image/upload/v1788809687/Screenshot_2026-09-07_223349_ew5p1b.png",
     commercial: true,
@@ -43,7 +43,6 @@ const projects: Project[] = [
     description:
       "Food ordering platform: SSR storefront, Fastify REST API, WayForPay payments, Google OAuth + 2FA, rate limiting, admin panel. Vitest.",
     tags: ["Next.js", "Fastify", "PostgreSQL", "Drizzle", "Vitest"],
-    href: "https://come-by-shop-production.up.railway.app",
     image:
       "https://res.cloudinary.com/dk9yjgta3/image/upload/f_auto/q_auto/Screenshot_2026-08-31_093458_pp6ymh.png",
     commercial: true,
@@ -55,7 +54,7 @@ const projects: Project[] = [
     description:
       "Store for gaming mousepads and glides on Next.js 16: Neon PostgreSQL catalog, cart with Zustand, live stock sync via TanStack Query.",
     tags: ["Next.js 16", "Neon", "Zustand", "TanStack Query", "Tailwind 4"],
-    href: "https://nami-gear-nu.vercel.app",
+    href: "https://nami.wtf",
     image:
       "https://res.cloudinary.com/dk9yjgta3/image/upload/f_auto/q_auto/Screenshot_2026-08-28_001122_rzff0g.png",
   },
@@ -150,7 +149,7 @@ function ProjectCard({
     </div>
   );
 
-  if (coming) return inner;
+  if (coming || !href) return inner;
 
   return (
     <Link
