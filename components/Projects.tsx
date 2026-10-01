@@ -43,6 +43,7 @@ const projects: Project[] = [
     description:
       "Food ordering platform: SSR storefront, Fastify REST API, WayForPay payments, Google OAuth + 2FA, rate limiting, admin panel. Vitest.",
     tags: ["Next.js", "Fastify", "PostgreSQL", "Drizzle", "Vitest"],
+    href: "https://come-by-shope-latest.vercel.app",
     image:
       "https://res.cloudinary.com/dk9yjgta3/image/upload/f_auto/q_auto/Screenshot_2026-08-31_093458_pp6ymh.png",
     commercial: true,
