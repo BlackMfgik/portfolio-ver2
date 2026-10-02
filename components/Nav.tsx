@@ -37,6 +37,14 @@ const tracks = [
     coverSrc: "/ascii-track-cover-02.png",
     duration: 180,
   },
+  {
+    artist: "Machine Girl",
+    title: "Out of Bounds",
+    url: "https://music.youtube.com/watch?v=pVfLyBWUcnY",
+    src: "/audio/track-03.mp3",
+    coverSrc: "/ascii-track-cover-03.png",
+    duration: 180,
+  },
 ];
 
 const VOLUME_STORAGE_KEY = "portfolio-mini-player-volume";
