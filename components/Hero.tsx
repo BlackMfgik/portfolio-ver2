@@ -23,7 +23,7 @@ export default function Hero() {
             animation: "fadeUp 1s cubic-bezier(0.2,0.7,0.2,1) 0.2s both",
           }}
         >
-          Fullstack Developer / UI·UX Designer
+          Fullstack Developer
         </div>
 
         <h1
