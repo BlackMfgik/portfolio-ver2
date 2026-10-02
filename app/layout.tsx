@@ -27,9 +27,6 @@ export const metadata: Metadata = {
   authors: [{ name: "Aokigahara", url: "https://aokigahara.dev" }],
   creator: "Aokigahara",
   publisher: "Aokigahara",
-  icons: {
-    icon: [{ url: "/favicon.svg", type: "image/svg+xml" }],
-  },
   robots: "index, follow",
   metadataBase: new URL("https://aokigahara.dev"),
   alternates: { canonical: "/" },
@@ -118,7 +115,6 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-        <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link
           rel="preconnect"
