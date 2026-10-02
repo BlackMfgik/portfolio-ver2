@@ -1,0 +1,165 @@
+<!doctype html>
+<!--
+  CV source. Build the PDF with:
+  chrome --headless --no-pdf-header-footer --print-to-pdf=public/cv/aokigahara-cv.pdf cv-source/aokigahara-cv.html
+-->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Dmytro Lanovyi — Full-Stack Developer CV</title>
+<style>
+  @page { size: A4; margin: 0; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: "Segoe UI", system-ui, sans-serif;
+    color: #111;
+    font-size: 9.1pt;
+    line-height: 1.38;
+    padding: 10mm 14mm 6mm;
+    width: 210mm;
+  }
+  a { color: inherit; text-decoration: none; }
+  .muted { color: #555; }
+
+  header h1 { font-size: 24pt; font-weight: 700; line-height: 1.1; letter-spacing: -0.3pt; }
+  .role { font-weight: 600; font-size: 10.5pt; letter-spacing: 2.2pt; color: #444; margin-top: 1pt; }
+  .stack { color: #555; margin-top: 4pt; }
+  .contacts { margin-top: 5pt; display: flex; flex-wrap: nowrap; justify-content: space-between; white-space: nowrap; }
+  .contacts a { border-bottom: 0.75pt solid #999; padding-bottom: 1pt; }
+  .location { margin-top: 4pt; }
+  header { border-bottom: 2pt solid #111; padding-bottom: 9pt; margin-bottom: 9pt; }
+
+  .summary { margin-bottom: 10pt; }
+
+  h2 {
+    font-size: 9.5pt; font-weight: 700; letter-spacing: 3pt; text-transform: uppercase;
+    border-bottom: 0.75pt solid #bbb; padding-bottom: 3pt; margin: 10pt 0 6pt;
+  }
+  .row { display: flex; justify-content: space-between; align-items: baseline; gap: 12pt; }
+  .job-title { font-size: 11pt; font-weight: 600; }
+  .project { margin-top: 6pt; }
+  .project-head { font-size: 10.5pt; }
+  .project-head b { font-weight: 600; }
+  .links { display: flex; align-items: center; gap: 4pt; font-size: 8.5pt; color: #555; white-space: nowrap; }
+  .tag {
+    font-size: 7.5pt; font-weight: 700; letter-spacing: 1pt; color: #111;
+    border: 0.75pt solid #111; border-radius: 3pt; padding: 0 4pt;
+  }
+  ul { margin: 3pt 0 2pt 15pt; }
+  li { margin-bottom: 1pt; }
+  .tech { font-size: 8.5pt; color: #555; }
+
+  table { border-collapse: collapse; width: 100%; }
+  td { vertical-align: top; padding: 1.5pt 0; }
+  td.k { width: 46mm; font-size: 8.5pt; font-weight: 700; letter-spacing: 1pt; color: #444; text-transform: uppercase; padding-top: 2.5pt; }
+
+  .cols { display: flex; gap: 10mm; }
+  .cols > div { flex: 1; }
+
+  footer {
+    margin-top: 8pt; border-top: 0.75pt solid #bbb; padding-top: 6pt;
+    font-size: 8.5pt; color: #555;
+  }
+  footer b { color: #111; }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>Dmytro Lanovyi</h1>
+  <div class="role">JUNIOR+ FULL-STACK DEVELOPER</div>
+  <div class="stack">TypeScript · React · Next.js · Node.js · Fastify · PostgreSQL</div>
+  <div class="contacts">
+    <a href="mailto:lanovui0902@gmail.com">lanovui0902@gmail.com</a>
+    <a href="https://t.me/A0klgahara">Telegram: @A0klgahara</a>
+    <a href="https://aokigahara.dev/">aokigahara.dev</a>
+    <a href="https://github.com/BlackMfgik">github.com/BlackMfgik</a>
+    <a href="https://www.linkedin.com/in/dmytro-lanovyi/">linkedin.com/in/dmytro-lanovyi</a>
+  </div>
+  <div class="location">Cherkasy, Ukraine · Remote</div>
+</header>
+
+<p class="summary">
+  Junior+ full-stack developer with 1+ year of commercial freelance experience, working with TypeScript, React,
+  Next.js, Node.js and PostgreSQL. Writing code since 2024 and delivering projects for clients since 2025 — from
+  database schema and REST API to UI, authentication, payments, tests and deployment. Looking for a full-time role
+  in a team where I can grow as an engineer; also open to freelance projects.
+</p>
+
+<h2>Experience</h2>
+<div class="row">
+  <span class="job-title">Freelance Full-Stack Developer</span>
+  <span class="muted">2025 — present · Remote</span>
+</div>
+
+<div class="project">
+  <div class="row">
+    <span class="project-head"><b>Okrip World</b> <span class="muted">— client: Ukrainian Minecraft network (3 servers), 2026</span></span>
+    <span class="links"><a class="tag" href="https://okrip.world/">LIVE</a> <a class="tag" href="https://github.com/BlackMfgik/okrip-world">CODE</a></span>
+  </div>
+  <ul>
+    <li>Built the website and a player verification system: Discord login → application with Minecraft nickname → moderation in Telegram → automatic whitelist on the game server.</li>
+    <li>Designed a Turborepo monorepo: Next.js frontend, Fastify API with a background worker, shared Zod contracts, PostgreSQL + Drizzle.</li>
+    <li>Wrote a Java 21 Paper/Purpur plugin with reliable command delivery (retries) between the API and the game server.</li>
+    <li>Set up CI on GitHub Actions (typecheck, lint, Vitest tests on real PostgreSQL 17, build) and Docker Compose for local PostgreSQL.</li>
+    <li>Integrated live Dynmap world maps through a server-side proxy.</li>
+  </ul>
+  <div class="tech">Next.js · Fastify · PostgreSQL · Drizzle · Discord OAuth · Telegram Bot API · Java · Vitest · Docker · GitHub Actions</div>
+</div>
+
+<div class="project">
+  <div class="row">
+    <span class="project-head"><b>Come By Shop</b> <span class="muted">— client: food ordering platform, 2025</span></span>
+    <span class="links"><a class="tag" href="https://come-by-shope-latest.vercel.app/">LIVE</a> <a class="tag" href="https://github.com/BlackMfgik/Come-by-shop-latest">CODE</a></span>
+  </div>
+  <ul>
+    <li>Delivered a full food e-commerce product end to end: menu, combos, cart, user accounts and an admin panel.</li>
+    <li>Implemented email verification, Google OAuth, 2FA, WayForPay online payments, SMS/email notifications and Cloudinary image uploads.</li>
+    <li>Built the Fastify REST API with PostgreSQL + Drizzle ORM: request validation, rate limiting and security headers.</li>
+    <li>Covered frontend and backend with Vitest tests; deployed on Railway.</li>
+  </ul>
+  <div class="tech">React · Next.js · Fastify · Drizzle ORM · JWT / OAuth · WayForPay · Vitest</div>
+</div>
+
+<h2>Personal Project</h2>
+<div class="project" style="margin-top:0">
+  <div class="row">
+    <span class="project-head"><b>Nami Gear</b> <span class="muted">— e-commerce store for gaming mousepads, 2026</span></span>
+    <span class="links"><a class="tag" href="https://nami.wtf/">LIVE</a> <a class="tag" href="https://github.com/BlackMfgik/Nami-gear">CODE</a></span>
+  </div>
+  <ul>
+    <li>Product catalog, cart and checkout on Next.js 16; product and stock data in Neon PostgreSQL, synced with TanStack Query.</li>
+    <li>Persistent cart with Zustand, images on Cloudinary, orders stored via Next.js Route Handlers.</li>
+  </ul>
+  <div class="tech">Next.js 16 · TypeScript · Neon PostgreSQL · Zustand · TanStack Query</div>
+</div>
+
+<h2>Technical Skills</h2>
+<table>
+  <tr><td class="k">Languages</td><td>TypeScript, JavaScript, SQL, HTML, CSS</td></tr>
+  <tr><td class="k">Frontend</td><td>React 19, Next.js (App Router, SSR), Tailwind CSS, Zustand, TanStack Query</td></tr>
+  <tr><td class="k">Backend &amp; Data</td><td>Node.js, Fastify, REST APIs, PostgreSQL, Drizzle ORM, Zod</td></tr>
+  <tr><td class="k">Auth &amp; Integrations</td><td>JWT, NextAuth, Google / Discord OAuth, 2FA, WayForPay, Cloudinary, Resend, Telegram Bot API</td></tr>
+  <tr><td class="k">Quality &amp; Delivery</td><td>Vitest, ESLint, Git, Docker / Docker Compose, GitHub Actions (CI), Turborepo, Vercel, Railway</td></tr>
+</table>
+
+<div class="cols">
+  <div>
+    <h2>Education</h2>
+    <div class="row"><b style="font-weight:600">Self-directed software development</b><span class="muted">2024 — present</span></div>
+    <div class="muted">MDN, React and TypeScript documentation; practical project work.</div>
+  </div>
+  <div>
+    <h2>Languages</h2>
+    <div>Ukrainian — native</div>
+    <div>English — B1–B2</div>
+  </div>
+</div>
+
+<footer class="row">
+  <span>Portfolio: <a href="https://aokigahara.dev/"><b>aokigahara.dev</b></a></span>
+  <span>Open to full-time roles, internships and freelance projects · Remote</span>
+</footer>
+
+</body>
+</html>
