@@ -18,17 +18,11 @@ export default function About() {
         <BlackHoleText text="About" />
       </div>
       <div
-        className="max-w-[1200px] mx-auto items-start max-[900px]:flex max-[900px]:flex-col max-[900px]:gap-14"
-        style={{
-          display: "grid",
-          gridTemplateColumns: "1fr 1fr",
-          gap: "100px",
-        }}
+        className="max-w-[1200px] mx-auto items-start grid grid-cols-2 gap-[100px] max-[900px]:flex max-[900px]:flex-col max-[900px]:gap-14"
       >
         <div className="reveal">
           <h2
-            className="font-sans font-bold leading-[0.9] tracking-[-2px] uppercase mb-9 max-[900px]:text-[32px] max-[900px]:tracking-[-1.5px]"
-            style={{ fontSize: "42px" }}
+            className="font-sans font-bold text-[42px] leading-[0.9] tracking-[-2px] uppercase mb-9 max-[900px]:text-[32px] max-[900px]:tracking-[-1.5px]"
           >
             <BlackHoleText text="Building" />{" "}
             <BlackHoleText text="digital" className="text-accent" />
@@ -49,14 +43,12 @@ export default function About() {
           </p>
         </div>
         <div
-          className="reveal grid grid-cols-2 max-[900px]:gap-8"
-          style={{ gap: "48px" }}
+          className="reveal grid grid-cols-2 gap-12 max-[900px]:gap-x-6 max-[900px]:gap-y-8 max-[900px]:w-full"
         >
           {stats.map(({ value, label }) => (
             <div key={label} className="border-t border-line pt-6">
               <div
-                className="font-sans font-extrabold leading-[0.88] tracking-[-3px] text-txt mb-2.5 max-[900px]:text-[48px] max-[900px]:tracking-[-2px]"
-                style={{ fontSize: "64px" }}
+                className="font-sans font-extrabold text-[64px] leading-[0.88] tracking-[-3px] text-txt mb-2.5 max-[900px]:text-[clamp(30px,10vw,48px)] max-[900px]:tracking-[-2px]"
               >
                 <BlackHoleText text={value} />
               </div>

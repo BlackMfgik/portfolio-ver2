@@ -63,8 +63,7 @@ export default function Experience() {
       <div className="max-w-[1200px] mx-auto">
         <div className="reveal mb-16 max-[900px]:mb-10">
           <h2
-            className="font-sans font-extrabold leading-[0.9] tracking-[-2px] uppercase mb-6"
-            style={{ fontSize: "clamp(36px, 5vw, 64px)" }}
+            className="font-sans font-extrabold text-[clamp(36px,5vw,64px)] leading-[0.9] tracking-[-2px] uppercase mb-6 max-[900px]:text-[clamp(26px,8.5vw,40px)]"
           >
             <BlackHoleText text="Freelance" />
             <br />

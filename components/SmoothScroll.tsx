@@ -7,6 +7,10 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 if (typeof window !== "undefined") {
   gsap.registerPlugin(ScrollTrigger);
+  // На телефонах адресний рядок ховається/з'являється під час скролу і
+  // змінює висоту в'юпорту — без цього ScrollTrigger щоразу перераховував
+  // pin секції проєктів, і сторінка відчутно стрибала.
+  ScrollTrigger.config({ ignoreMobileResize: true });
 }
 
 export default function SmoothScroll({

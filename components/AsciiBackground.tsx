@@ -2,7 +2,11 @@
 
 import { useEffect, useRef } from "react";
 import type { AsciiWorkerMessage } from "@/lib/ascii/ascii.worker";
-import { createAsciiRenderer, type AsciiRenderer } from "@/lib/ascii/renderer";
+import {
+  createAsciiRenderer,
+  type AsciiMotion,
+  type AsciiRenderer,
+} from "@/lib/ascii/renderer";
 
 interface AsciiBackgroundProps {
   isMusicPlaying?: boolean;
@@ -14,6 +18,15 @@ interface AsciiBackgroundProps {
 interface RendererHandle {
   send(message: Exclude<AsciiWorkerMessage, { type: "init" }>): void;
   destroy(): void;
+}
+
+const REDUCED_MOTION_QUERY = "(prefers-reduced-motion: reduce)";
+const TOUCH_QUERY = "(hover: none), (pointer: coarse)";
+
+function getMotion(): AsciiMotion {
+  if (window.matchMedia(REDUCED_MOTION_QUERY).matches) return "still";
+  if (window.matchMedia(TOUCH_QUERY).matches) return "low";
+  return "full";
 }
 
 function toAbsolute(src: string) {
@@ -44,6 +57,7 @@ function startRenderer(
         height: window.innerHeight,
         coverSrc: toAbsolute(coverSrc),
         isMusicPlaying,
+        motion: getMotion(),
       };
       worker.postMessage(init, [offscreen]);
 
@@ -65,6 +79,7 @@ function startRenderer(
   }
   if (!renderer) return null;
 
+  renderer.setMotion(getMotion());
   renderer.resize(window.innerWidth, window.innerHeight);
   renderer.setMusicPlaying(isMusicPlaying);
   renderer.setCover(toAbsolute(coverSrc));
@@ -84,6 +99,9 @@ function startRenderer(
           break;
         case "cover":
           local.setCover(message.src);
+          break;
+        case "motion":
+          local.setMotion(message.motion);
           break;
       }
     },
@@ -142,12 +160,22 @@ export default function AsciiBackground({
       });
     };
 
+    const motionQueries = [REDUCED_MOTION_QUERY, TOUCH_QUERY].map((q) =>
+      window.matchMedia(q),
+    );
+    const onMotionChange = () =>
+      handle.send({ type: "motion", motion: getMotion() });
+
     window.addEventListener("mousemove", onMouseMove, { passive: true });
     window.addEventListener("resize", onResize);
+    motionQueries.forEach((q) => q.addEventListener("change", onMotionChange));
 
     return () => {
       window.removeEventListener("mousemove", onMouseMove);
       window.removeEventListener("resize", onResize);
+      motionQueries.forEach((q) =>
+        q.removeEventListener("change", onMotionChange),
+      );
       cancelAnimationFrame(mouseRaf);
       handle.destroy();
       handleRef.current = null;

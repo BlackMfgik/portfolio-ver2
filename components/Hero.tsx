@@ -5,17 +5,10 @@ export default function Hero() {
   return (
     <section
       id="hero"
-      className="relative min-h-screen z-[1] max-[900px]:flex max-[900px]:flex-col max-[900px]:justify-center max-[900px]:px-5 max-[900px]:pt-24 max-[900px]:pb-24 max-[900px]:text-center"
-      style={{
-        display: "grid",
-        gridTemplateColumns: "1fr 1fr",
-        gap: "60px",
-        padding: "0 40px",
-      }}
+      className="relative min-h-screen z-[1] grid grid-cols-2 gap-[60px] px-10 max-[900px]:flex max-[900px]:flex-col max-[900px]:justify-center max-[900px]:px-5 max-[900px]:pt-24 max-[900px]:pb-24 max-[900px]:text-center"
     >
       <div
         className="flex flex-col justify-center z-[2] pl-10 max-[900px]:pl-0 max-[900px]:items-center"
-        style={{ display: "flex" }}
       >
         <div
           className="font-mono text-[10px] tracking-[3px] uppercase text-txt-muted mb-8"
@@ -27,9 +20,8 @@ export default function Hero() {
         </div>
 
         <h1
-          className="font-sans font-extrabold leading-[0.88] tracking-[-3px] uppercase text-txt mb-5"
+          className="font-sans font-extrabold text-[clamp(44px,7vw,96px)] leading-[0.88] tracking-[-3px] uppercase text-txt mb-5 max-[900px]:text-[clamp(36px,12.5vw,56px)]"
           style={{
-            fontSize: "clamp(44px, 7vw, 96px)",
             animation: "fadeUp 1s cubic-bezier(0.2,0.7,0.2,1) 0.4s both",
           }}
         >

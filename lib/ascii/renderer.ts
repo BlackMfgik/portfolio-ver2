@@ -144,6 +144,11 @@ interface CoverLayers {
   imageCtx: Ctx2D;
   maskCanvas: AnyCanvas;
   maskCtx: Ctx2D;
+  // Обкладинка, вже оброблена фільтрами, — з неї кожен символ вирізає
+  // свій фрагмент. Перебудовується лише коли змінюється розмір чи яскравість.
+  artCanvas: AnyCanvas;
+  artCtx: Ctx2D;
+  artKey: string;
 }
 
 function clamp(value: number, min: number, max: number) {
@@ -376,15 +381,27 @@ function drawAsciiAlbumCover(
     maskCanvas.height = layerSize;
   }
 
+  const { artCanvas, artCtx } = layers;
+  const artKey = `${layerSize}:${Math.round(eased * 50)}`;
+  if (layers.artKey !== artKey) {
+    if (artCanvas.width !== layerSize || artCanvas.height !== layerSize) {
+      artCanvas.width = layerSize;
+      artCanvas.height = layerSize;
+    }
+    artCtx.save();
+    artCtx.clearRect(0, 0, layerSize, layerSize);
+    artCtx.filter = "brightness(1.15) contrast(1.18) saturate(1.08)";
+    artCtx.drawImage(source.image, 0, 0, layerSize, layerSize);
+    artCtx.filter = "none";
+    drawCoverSquareLift(artCtx, layerSize, eased);
+    artCtx.restore();
+    layers.artKey = artKey;
+  }
+
   imageCtx.save();
   imageCtx.clearRect(0, 0, layerSize, layerSize);
   imageCtx.globalCompositeOperation = "source-over";
-  imageCtx.globalAlpha = smooth01(mix);
-  imageCtx.filter = "brightness(1.15) contrast(1.18) saturate(1.08)";
-  imageCtx.drawImage(source.image, 0, 0, layerSize, layerSize);
-  imageCtx.filter = "none";
-  drawCoverSquareLift(imageCtx, layerSize, eased);
-  imageCtx.restore();
+  imageCtx.globalAlpha = eased;
 
   maskCtx.save();
   maskCtx.clearRect(0, 0, layerSize, layerSize);
@@ -451,13 +468,29 @@ function drawAsciiAlbumCover(
         1,
         alpha * reaction.fade * (1 + reaction.gravity * 0.16),
       );
-      maskCtx.fillText(
-        CHARS[charIndex] ?? CHARS[0],
-        reaction.x - layerX,
-        reaction.y - layerY,
+      const glyphX = reaction.x - layerX;
+      const glyphY = reaction.y - layerY;
+      maskCtx.fillText(CHARS[charIndex] ?? CHARS[0], glyphX, glyphY);
+
+      // Фрагмент обкладинки з "рідної" клітинки символу малюється туди, де
+      // символ є зараз, — тож шматок картинки рухається разом із символом
+      // (наприклад, коли його закручує курсор), а не просвічує крізь нього.
+      const spacing = Math.max(COVER_DENSE_CELL_SIZE, transitionCellSize);
+      const patch = spacing + 1;
+      const half = patch / 2;
+      imageCtx.drawImage(
+        artCanvas,
+        localX - half,
+        localY - half,
+        patch,
+        patch,
+        glyphX - half,
+        glyphY - half,
+        patch,
+        patch,
       );
 
-      localX += Math.max(COVER_DENSE_CELL_SIZE, transitionCellSize);
+      localX += spacing;
       column++;
     }
 
@@ -479,6 +512,7 @@ function drawAsciiAlbumCover(
   }
 
   maskCtx.restore();
+  imageCtx.restore();
 
   imageCtx.save();
   imageCtx.globalCompositeOperation = "destination-in";
@@ -491,8 +525,13 @@ function drawAsciiAlbumCover(
   ctx.restore();
 }
 
+// "full" — до 60 к/с; "low" — до ~30 к/с (сенсорні пристрої: курсора немає,
+// а батарею шкода); "still" — один статичний кадр (prefers-reduced-motion).
+export type AsciiMotion = "full" | "low" | "still";
+
 export interface AsciiRenderer {
   resize(width: number, height: number): void;
+  setMotion(motion: AsciiMotion): void;
   setMouse(x: number, y: number): void;
   setMusicPlaying(playing: boolean): void;
   setCover(src: string): void;
@@ -522,6 +561,8 @@ export function createAsciiRenderer(canvas: AnyCanvas): AsciiRenderer | null {
   let rafId = 0;
   let lastFrame = 0;
   let frameInterval = HIGH_FPS_INTERVAL;
+  let minFrameInterval = 0;
+  let still = false;
   let renderCost = 0;
   let measuredFrames = 0;
   let coverMix = 0;
@@ -532,10 +573,20 @@ export function createAsciiRenderer(canvas: AnyCanvas): AsciiRenderer | null {
 
   const imageCanvas = createCanvas(1, 1);
   const maskCanvas = createCanvas(1, 1);
+  const artCanvas = createCanvas(1, 1);
   const imageCtx = get2D(imageCanvas);
   const maskCtx = get2D(maskCanvas);
-  if (!imageCtx || !maskCtx) return null;
-  const coverLayers: CoverLayers = { imageCanvas, imageCtx, maskCanvas, maskCtx };
+  const artCtx = get2D(artCanvas);
+  if (!imageCtx || !maskCtx || !artCtx) return null;
+  const coverLayers: CoverLayers = {
+    imageCanvas,
+    imageCtx,
+    maskCanvas,
+    maskCtx,
+    artCanvas,
+    artCtx,
+    artKey: "",
+  };
 
   async function loadCover(src: string) {
     const request = ++coverRequest;
@@ -555,6 +606,8 @@ export function createAsciiRenderer(canvas: AnyCanvas): AsciiRenderer | null {
         width: COVER_SAMPLE_SIZE,
         height: COVER_SAMPLE_SIZE,
       };
+      coverLayers.artKey = "";
+      redrawStill();
     } catch {
       // Обкладинка — лише декор: без неї фон просто малюється без неї.
     }
@@ -581,17 +634,27 @@ export function createAsciiRenderer(canvas: AnyCanvas): AsciiRenderer | null {
     }
   }
 
-  function draw(now: number) {
-    rafId = raf(draw);
+  // У режимі "still" кадр малюється лише на вимогу (resize, нова обкладинка).
+  function redrawStill() {
+    if (!still || destroyed) return;
+    cancelRaf(rafId);
+    rafId = raf((now) => {
+      lastFrame = -Infinity;
+      draw(now);
+    });
+  }
 
-    if (now - lastFrame < frameInterval) return;
+  function draw(now: number) {
+    if (!still) rafId = raf(draw);
+
+    if (now - lastFrame < Math.max(frameInterval, minFrameInterval)) return;
     lastFrame = now;
     const renderStartedAt = performance.now();
 
     const cursorActive = sharedMouseX > -1000 && sharedMouseY > -1000;
     const coverTarget =
       isMusicPlaying && width >= COVER_MIN_VIEWPORT ? 1 : 0;
-    coverMix += (coverTarget - coverMix) * 0.075;
+    coverMix = still ? coverTarget : coverMix + (coverTarget - coverMix) * 0.075;
     if (Math.abs(coverTarget - coverMix) < 0.003) coverMix = coverTarget;
     const coverRect =
       coverMix > 0.01 && width >= COVER_MIN_VIEWPORT && coverSource
@@ -741,6 +804,17 @@ export function createAsciiRenderer(canvas: AnyCanvas): AsciiRenderer | null {
       width = canvas.width = nextWidth;
       height = canvas.height = nextHeight;
       initGrid();
+      redrawStill();
+    },
+    setMotion(motion) {
+      const wasStill = still;
+      still = motion === "still";
+      minFrameInterval = motion === "low" ? LOW_FPS_INTERVAL : 0;
+      if (still) redrawStill();
+      else if (wasStill) {
+        cancelRaf(rafId);
+        rafId = raf(draw);
+      }
     },
     setMouse(x, y) {
       sharedMouseX = x;
@@ -748,6 +822,7 @@ export function createAsciiRenderer(canvas: AnyCanvas): AsciiRenderer | null {
     },
     setMusicPlaying(playing) {
       isMusicPlaying = playing;
+      redrawStill();
     },
     setCover(src) {
       void loadCover(src);

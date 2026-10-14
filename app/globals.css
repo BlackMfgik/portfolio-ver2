@@ -839,7 +839,13 @@ body {
   }
   .project-slide {
     width: min(92vw, 480px);
-    height: clamp(520px, 72vh, 720px);
+    /* Висота за вмістом: фіксована висота залишала під горизонтальним
+       скріншотом велику порожню смугу. */
+    height: auto;
+  }
+  .project-slide-media {
+    flex: 0 0 auto;
+    aspect-ratio: 16 / 10;
   }
 }
 

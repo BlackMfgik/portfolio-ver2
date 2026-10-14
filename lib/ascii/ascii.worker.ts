@@ -1,4 +1,8 @@
-import { createAsciiRenderer, type AsciiRenderer } from "./renderer";
+import {
+  createAsciiRenderer,
+  type AsciiMotion,
+  type AsciiRenderer,
+} from "./renderer";
 
 export type AsciiWorkerMessage =
   | {
@@ -8,7 +12,9 @@ export type AsciiWorkerMessage =
       height: number;
       coverSrc: string;
       isMusicPlaying: boolean;
+      motion: AsciiMotion;
     }
+  | { type: "motion"; motion: AsciiMotion }
   | { type: "resize"; width: number; height: number }
   | { type: "mouse"; x: number; y: number }
   | { type: "music"; playing: boolean }
@@ -21,6 +27,7 @@ self.onmessage = (event: MessageEvent<AsciiWorkerMessage>) => {
 
   if (message.type === "init") {
     renderer = createAsciiRenderer(message.canvas);
+    renderer?.setMotion(message.motion);
     renderer?.resize(message.width, message.height);
     renderer?.setMusicPlaying(message.isMusicPlaying);
     renderer?.setCover(message.coverSrc);
@@ -41,6 +48,9 @@ self.onmessage = (event: MessageEvent<AsciiWorkerMessage>) => {
       break;
     case "cover":
       renderer.setCover(message.src);
+      break;
+    case "motion":
+      renderer.setMotion(message.motion);
       break;
   }
 };

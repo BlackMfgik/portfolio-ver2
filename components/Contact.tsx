@@ -28,8 +28,7 @@ export default function Contact() {
       </div>
       <div className="max-w-[800px] mx-auto text-center reveal">
         <h2
-          className="font-sans font-extrabold leading-[0.88] tracking-[-3px] uppercase mb-7"
-          style={{ fontSize: "clamp(36px, 5vw, 64px)" }}
+          className="font-sans font-extrabold text-[clamp(36px,5vw,64px)] leading-[0.88] tracking-[-3px] uppercase mb-7 max-[900px]:text-[clamp(26px,8.5vw,40px)] max-[900px]:tracking-[-2px]"
         >
           <BlackHoleText text="Let's build" />
           <br />
