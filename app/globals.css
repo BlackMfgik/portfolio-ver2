@@ -815,6 +815,25 @@ body {
   display: flex;
   align-items: center;
 }
+/* Телефон: стрічку гортають свайпом (див. Projects.tsx, MOBILE_QUERY). */
+.projects-viewport.is-swipe {
+  overflow-x: auto;
+  overflow-y: hidden;
+  scroll-snap-type: x mandatory;
+  overscroll-behavior-x: contain;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+.projects-viewport.is-swipe::-webkit-scrollbar {
+  display: none;
+}
+.projects-viewport.is-swipe .project-slide {
+  scroll-snap-align: center;
+}
+.projects-viewport.is-swipe .projects-track {
+  will-change: auto;
+}
+
 .projects-track {
   display: flex;
   align-items: center;
@@ -838,7 +857,8 @@ body {
     gap: 16px;
   }
   .project-slide {
-    width: min(92vw, 480px);
+    /* Вужче за екран, щоб краї сусідніх карток визирали — підказка свайпу. */
+    width: min(84vw, 480px);
     /* Висота за вмістом: фіксована висота залишала під горизонтальним
        скріншотом велику порожню смугу. */
     height: auto;

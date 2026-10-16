@@ -164,6 +164,9 @@ function ProjectCard({
   );
 }
 
+const DESKTOP_QUERY = "(min-width: 901px)";
+const MOBILE_QUERY = "(max-width: 900px)";
+
 export default function Projects() {
   const sectionRef = useRef<HTMLElement | null>(null);
   const viewportRef = useRef<HTMLDivElement | null>(null);
@@ -177,24 +180,28 @@ export default function Projects() {
     const track = trackRef.current;
     if (!section || !viewport || !track) return;
 
-    const ctx = gsap.context(() => {
+    // Динамічні відступи зліва/справа треку так, щоб перша й остання
+    // картка могли стати ТОЧНО по центру viewport на краях скролу
+    // (замість фіксованих асиметричних значень у CSS).
+    const setEdgePadding = () => {
+      const firstCard = cardsRef.current.find(
+        (c): c is HTMLDivElement => !!c,
+      );
+      if (!firstCard) return;
+      const vWidth = viewport.clientWidth;
+      // offsetWidth, а не getBoundingClientRect: на нього не впливає scale.
+      const cardWidth = firstCard.offsetWidth;
+      const pad = Math.max(0, (vWidth - cardWidth) / 2);
+      track.style.paddingLeft = `${pad}px`;
+      track.style.paddingRight = `${pad}px`;
+    };
+
+    const mm = gsap.matchMedia(section);
+
+    // Комп'ютер: вертикальний скрол сторінки рухає стрічку (pin + scrub).
+    mm.add(DESKTOP_QUERY, () => {
       const getScrollDistance = () =>
         Math.max(track.scrollWidth - viewport.clientWidth, 0);
-
-      // Динамічні відступи зліва/справа треку так, щоб перша й остання
-      // картка могли стати ТОЧНО по центру viewport на краях скролу
-      // (замість фіксованих асиметричних значень у CSS).
-      const setEdgePadding = () => {
-        const firstCard = cardsRef.current.find(
-          (c): c is HTMLDivElement => !!c,
-        );
-        if (!firstCard) return;
-        const vWidth = viewport.clientWidth;
-        const cardWidth = firstCard.getBoundingClientRect().width;
-        const pad = Math.max(0, (vWidth - cardWidth) / 2);
-        track.style.paddingLeft = `${pad}px`;
-        track.style.paddingRight = `${pad}px`;
-      };
 
       const BUFFER_PX = 400; // "мертва" відстань скролу до/після горизонтального руху
 
@@ -339,10 +346,74 @@ export default function Projects() {
         tween.scrollTrigger?.kill();
         tween.kill();
       };
-    }, section);
+    });
+
+    // Телефон: звичайна горизонтальна стрічка, яку гортають свайпом, зі
+    // scroll-snap до картки. Без pin — вертикальний скрол сторінки не
+    // перехоплюється, а стрічка не залежить від нього.
+    mm.add(MOBILE_QUERY, () => {
+      const cards = cardsRef.current.filter((c): c is HTMLDivElement => !!c);
+      let centers: number[] = [];
+      let widths: number[] = [];
+      let rafId = 0;
+
+      viewport.classList.add("is-swipe");
+
+      const measure = () => {
+        setEdgePadding();
+        centers = cards.map((card) => card.offsetLeft + card.offsetWidth / 2);
+        widths = cards.map((card) => card.offsetWidth);
+      };
+
+      const update = () => {
+        rafId = 0;
+        const scrollLeft = viewport.scrollLeft;
+        const vWidth = viewport.clientWidth;
+        const max = viewport.scrollWidth - vWidth;
+
+        cards.forEach((card, i) => {
+          const dist = Math.abs((centers[i] ?? 0) - scrollLeft - vWidth / 2);
+          const maxDist = (vWidth / 2 + (widths[i] ?? 0) / 2) * 0.82;
+          const raw = maxDist > 0 ? gsap.utils.clamp(0, 1, dist / maxDist) : 0;
+          const t = Math.pow(raw, 0.6);
+          gsap.set(card, {
+            scale: gsap.utils.interpolate(1, 0.86, t),
+            opacity: gsap.utils.interpolate(1, 0.4, t),
+          });
+        });
+
+        if (scrollFillRef.current) {
+          scrollFillRef.current.style.transform = `scaleX(${max > 0 ? scrollLeft / max : 0})`;
+        }
+      };
+
+      const onScroll = () => {
+        if (!rafId) rafId = requestAnimationFrame(update);
+      };
+      const onResize = () => {
+        measure();
+        update();
+      };
+
+      measure();
+      update();
+      viewport.addEventListener("scroll", onScroll, { passive: true });
+      window.addEventListener("resize", onResize);
+
+      return () => {
+        viewport.removeEventListener("scroll", onScroll);
+        window.removeEventListener("resize", onResize);
+        cancelAnimationFrame(rafId);
+        viewport.classList.remove("is-swipe");
+        viewport.scrollLeft = 0;
+        track.style.paddingLeft = "";
+        track.style.paddingRight = "";
+        gsap.set(cards, { clearProps: "scale,opacity,transform" });
+      };
+    });
 
     return () => {
-      ctx.revert();
+      mm.revert();
     };
   }, []);
 
@@ -373,7 +444,12 @@ export default function Projects() {
 
       <div className="projects-scroll-meta px-10 max-[900px]:px-5">
         <span className="font-mono text-[10px] tracking-[3px] uppercase text-txt-muted">
-          <BlackHoleText text="Scroll to explore" />
+          <span className="max-[900px]:hidden">
+            <BlackHoleText text="Scroll to explore" />
+          </span>
+          <span className="hidden max-[900px]:inline">
+            <BlackHoleText text="Swipe to explore" />
+          </span>
         </span>
         <div className="projects-scroll-track">
           <div
