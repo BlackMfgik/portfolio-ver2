@@ -44,8 +44,7 @@ const projects: Project[] = [
       "Food ordering platform: SSR storefront, Fastify REST API, WayForPay payments, Google OAuth + 2FA, rate limiting, admin panel. Vitest.",
     tags: ["Next.js", "Fastify", "PostgreSQL", "Drizzle", "Vitest"],
     href: "https://come-by-shope-latest.vercel.app",
-    image:
-      "https://res.cloudinary.com/dk9yjgta3/image/upload/f_auto/q_auto/Screenshot_2026-08-31_093458_pp6ymh.png",
+    image: "/projects/come-by.webp",
     commercial: true,
   },
   {
@@ -134,7 +133,7 @@ function ProjectCard({
           </div>
 
           {tags && tags.length > 0 && (
-            <div className="flex flex-wrap gap-2 -mt-6">
+            <div className="flex flex-wrap gap-2 -mt-6 max-[900px]:mt-0">
               {tags.map((tag) => (
                 <span
                   key={tag}
